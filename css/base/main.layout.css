@@ -1,0 +1,9 @@
+.app-main {
+  height: 90vh;
+}
+
+#app {
+  /* height: 100vh; */
+  display: flex;
+  flex-direction: column;
+}

@@ -1,3 +1,9 @@
 /* BASE */
 
 @import "base/basic.css";
+@import "base/main.layout.css";
+
+/* CMPS */
+
+@import "cmps/main-header.css";
+@import "cmps/main-footer.css";
