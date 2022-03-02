@@ -42,10 +42,10 @@ export default {
                     this.notes.splice(idx, 1);
                     eventApp.emit('show-msg', { txt: 'Deleted succesfully', type: 'success' });
                 })
-                .catch(err => {
-                    console.error(err);
-                    eventApp.emit('show-msg', { txt: 'Error - please try again later', type: 'error' });
-                });
+            // .catch(err => {
+            //     console.error(err);
+            //     eventApp.emit('show-msg', { txt: 'Error - please try again later', type: 'error' });
+            // });
         },
     },
     computed: {
