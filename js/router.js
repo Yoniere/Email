@@ -1,8 +1,7 @@
 // import bookApp from './views/book-app.cmp.js';
 import homePage from './views/home-page.cmp.js';
-// import aboutPage from './views/about-page.cmp.js'
-// import bookDetails from './views/book-details.cmp.js';
-// import addBook from './views/book-add.cmp.js';
+import noteIndex from './apps/keep/pages/note-index.cmp.js';
+
 
 const routes = [
     {
@@ -10,10 +9,10 @@ const routes = [
         component: homePage
     },
 
-    // {
-    //     path: '/about',
-    //     component: aboutPage,
-    // },
+    {
+        path: '/note-index',
+        component: noteIndex,
+    },
 
     // {
     //     path: '/book',

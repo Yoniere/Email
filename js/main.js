@@ -5,9 +5,18 @@ import appHeader from './cmps/app-header.cmp.js';
 
 const options = {
     template: `
-
-        <app-header />
-        <router-view />
+<app-header />
+    <section>
+   <nav>
+            <router-link to="/">Home</router-link>  |
+            <router-link to="/noteIndex">noteIndex</router-link>
+     </nav>
+        
+        <keep-alive>
+          <router-view></router-view>
+        </keep-alive>
+      
+    </section>
         <app-footer />
     `,
     components: {
