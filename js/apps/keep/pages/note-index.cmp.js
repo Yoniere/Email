@@ -2,7 +2,7 @@
 import noteList from '../cmps/note-list.cmp.js';
 // import { eventAppsus } from '../../../main-services/event-appsus-service.js';
 import { noteService } from '../services/note.service.js';
-import notesFilter from '../../keep/cmps/note-filter.cmp.js';
+// import notesFilter from '../../keep/cmps/note-filter.cmp.js';
 
 export default {
     template: `
@@ -10,7 +10,7 @@ export default {
             <h2 >hollaaa</h2>
              
             <!-- <note-filter @filtered="setFilter" v-if="!selectedNote"/> -->
-            <note-list :notes="notesToShow" @selected="selectNote" ></note-list>
+            <note-list :notes='notes' ></note-list>
           <!-- :notes="notesToShow" @remove="removeNote"  @selected="selectNote" -->
                   
         </section>
@@ -65,7 +65,7 @@ export default {
     components: {
         noteService,
         noteList,
-        notesFilter,
+        // notesFilter,
         // eventAppsus
     }
 };
