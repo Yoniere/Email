@@ -1,5 +1,5 @@
 // import noteImg from './note-img.cmp.js'
-// import noteTodos from './note-todos.cmp.js'
+import noteTodos from './note-todos.cmp.js'
 // import noteVideo from './note-video.cmp.js'
 import noteTxt from './note-txt.cmp.js'
 import { noteService } from '../services/note.service.js'
@@ -16,7 +16,7 @@ export default {
                 <div v-for="(note, idx) in notes">
                     <component :is="note.type"  :info="note.info" @setVal="setAns($event, idx)"></component>
                 </div>
-
+                <pre>{{answers}}</pre>
         </section>
     `,
     data() {
@@ -50,7 +50,7 @@ export default {
     components: {
         noteService,
         // noteImg,
-        // noteTodos,
+        noteTodos,
         // noteVideo,
         noteTxt
 

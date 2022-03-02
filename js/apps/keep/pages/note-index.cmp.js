@@ -9,9 +9,9 @@ export default {
         <section class="note-index app-main">
             <h2 >hollaaa</h2>
              
-            <!-- <note-filter @filtered="setFilter" v-if="!selectedNote"/> -->
+           
             <note-list :notes='notes' @remove="removeNote"  @selected="selectNote" ></note-list>
-          <!-- :notes="notesToShow" @remove="removeNote"  @selected="selectNote" -->
+         
                   
         </section>
     `,
@@ -42,23 +42,15 @@ export default {
                     this.notes.splice(idx, 1);
                     eventApp.emit('show-msg', { txt: 'Deleted succesfully', type: 'success' });
                 })
-            // .catch(err => {
-            //     console.error(err);
-            //     eventApp.emit('show-msg', { txt: 'Error - please try again later', type: 'error' });
-            // });
+                .catch(err => {
+                    console.error(err);
+                    eventApp.emit('show-msg', { txt: 'Error - please try again later', type: 'error' });
+                });
         },
     },
     computed: {
 
     },
-    // notesToShow() {
-    //     if (!this.filterBy) return this.notes
-    //     let filterdByNames = this.notes;
-    //     if (this.filterBy.title) {
-    //         const regex = new RegExp(this.filterBy.title, 'i')
-    //         return filterdByNames = this.notes.filter((note) => regex.test(note.title))
-    //     }
-    // },
 
     components: {
         noteService,
