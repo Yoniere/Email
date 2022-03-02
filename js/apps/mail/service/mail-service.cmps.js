@@ -22,7 +22,7 @@ function _createEmails() {
                 body: 'Would love to catch up sometimes',
                 isRead: false,
                 sentAt: Date.now(),
-                to: 'momo@momo.com',
+                sender: 'momo@momo.com',
             },
             {
                 id: storageService.makeId(),
@@ -30,7 +30,7 @@ function _createEmails() {
                 body: 'dear sir, we would like to have a short phone call regard your job application',
                 isRead: false,
                 sentAt: Date.now() + 20000,
-                to: 'momo@momo.com',
+                sender: 'momo@momo.com',
             },
             {
                 id: storageService.makeId(),
@@ -38,7 +38,7 @@ function _createEmails() {
                 body: 'Dear Appsus, please find attached signed gym contract. hope you see you soon',
                 isRead: false,
                 sentAt: Date.now() + 40000,
-                to: 'momo@momo.com',
+                sender: 'momo@momo.com',
             }
         ]
         utilService.saveToStorage(EMAILS_KEY, emails)

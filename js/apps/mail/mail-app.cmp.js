@@ -1,9 +1,9 @@
 import { mailService } from "./service/mail-service.cmps.js";
+import mailList from "./cmps/mail-list.cmp.js";
 
 export default {
     template: `
         <section class="mail-app app-main">
-        {{emails}}
         <mail-list :emails="emails"></mail-list>
         </section>
     `,
@@ -22,6 +22,6 @@ export default {
 
     },
     components: {
-
+        mailList
     }
 };
