@@ -6,11 +6,20 @@ _createEmails()
 
 export const mailService = {
     query,
-
+    get,
+    remove,
 }
 
 function query() {
     return storageService.query(EMAILS_KEY)
+}
+
+function get(emailId) {
+    return storageService.get(EMAILS_KEY, emailId)
+}
+
+function remove(emailId) {
+    return storageService.remove(EMAILS_KEY, emailId);
 }
 
 function _createEmails() {
