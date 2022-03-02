@@ -12,8 +12,6 @@ const options = {
             <app-footer />
     `,
     components: {
-
-
         appHeader,
         appFooter,
 
