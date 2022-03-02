@@ -11,8 +11,22 @@ export const noteService = {
     remove,
     save,
     removeNote,
+    getEmptyNote
 }
 
+function getEmptyNote(type = '', title = 'keep') {
+    return {
+        id: '',
+        type,
+        title,
+        info: []
+    };
+}
+// function _createNote(type, title = 'keep') {
+//     const note = getEmptyCar(type, title)
+//     note.id = utilService.makeId()
+//     return note;
+// }
 
 
 function query() {
@@ -29,6 +43,7 @@ function removeNote(note, idx) {
 }
 
 function get(noteId) {
+
     return storageService.get(NOTES_KEY, noteId)
 
 }

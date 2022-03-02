@@ -12,18 +12,21 @@ export default {
         <p>note id: {{note.id}}</p>
         <p>note type: {{note.type}}</p>
             
-             
                 <div v-for="(note, idx) in notes">
                     <component :is="note.type"  :info="note.info" @setVal="setAns($event, idx)"></component>
                 </div>
                 <pre>{{answers}}</pre>
+
+                <!-- <button>edit</button> -->
         </section>
     `,
     data() {
         return {
             notes: null,
+            selectedNote: null,
             answers: []
         }
+
     },
     created() {
         noteService.query()
@@ -39,7 +42,10 @@ export default {
             this.answers.splice(idx, 1, ans)
 
         },
+        // selectNote(note) {
+        //     this.selectedNote = note;
 
+        // },
 
     },
 
@@ -52,7 +58,8 @@ export default {
         // noteImg,
         noteTodos,
         // noteVideo,
-        noteTxt
+        noteTxt,
+
 
     }
 }
