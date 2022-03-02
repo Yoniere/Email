@@ -3,7 +3,7 @@ export default {
     template: `
           <section >
               <datalist :id="listId">
-                  <option v-for="opt in info.opts" :value="opt" />
+                  <option v-for="opt in info.opts" :value="opt" >
               </datalist>
               <label>
                   {{info.txt}}
@@ -27,7 +27,7 @@ export default {
             return "list" + this._uid;
         }
     },
-    // created() {
-    //     console.log(this._uid);
-    // }
+    created() {
+        return "list" + this._uid;
+    }
 };

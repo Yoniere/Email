@@ -14,11 +14,10 @@ export const noteService = {
     getEmptyNote
 }
 
-function getEmptyNote(type = '', title = 'keep') {
+function getEmptyNote(type = '') {
     return {
         id: '',
         type,
-        title,
         info: []
     };
 }
@@ -88,6 +87,18 @@ function _createNotes() {
                     todos: [
                         { txt: "Driving liscence", doneAt: null },
                         { txt: "Coding power", doneAt: 187111111 }
+                    ]
+                }
+            },
+
+            {
+                id: "n104",
+                type: "note-video",
+                info: {
+                    label: "Get my stuff together",
+                    videos: [
+                        { url: "https://www.youtube.com/watch?v=s4ObxcdXoFE", },
+                        { url: "https://dai.ly/x7n7y06", }
                     ]
                 }
             }
