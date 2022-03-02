@@ -1,18 +1,14 @@
-
 import noteList from '../cmps/note-list.cmp.js';
 import { eventApp } from '../../../main-services/eventapp-service.js';
 import { noteService } from '../services/note.service.js';
-// import notesFilter from '../../keep/cmps/note-filter.cmp.js';
+
 
 export default {
     template: `
         <section class="note-index app-main">
-            <h2 >hollaaa</h2>
-             
-           
+            
             <note-list :notes='notes' @remove="removeNote"  @selected="selectNote" ></note-list>
-         
-                  
+    
         </section>
     `,
     data() {
@@ -32,9 +28,7 @@ export default {
             this.selectedNote = note;
 
         },
-        setFilter(filterBy) {
-            this.filterBy = filterBy;
-        },
+
         removeNote(id) {
             noteService.remove(id)
                 .then(() => {
@@ -55,7 +49,6 @@ export default {
     components: {
         noteService,
         noteList,
-        // notesFilter,
         eventApp
     }
 };

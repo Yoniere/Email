@@ -1,72 +1,82 @@
-// import { noteService } from '../services/note.service.js'
-// import { eventApp } from '../../../main-services/eventapp-service.js';
+import { noteService } from '../services/note.service.js'
 
-// export default {
-//     template: `
+// import noteTxt from './note-txt.cmp.js'
+
+export default {
+    // props: ['note'],
+    template: `
     
-//         <section v-if="carToEdit" class="car-edit app-main">
-//             <h4>{{formTitle}}</h4>
-//             <form @submit.prevent="save">
-//                 <input type="text" required v-model="carToEdit.vendor" placeholder="Vendor">
-//                 <input type="number" v-model.number="carToEdit.maxSpeed" placeholder="Max speed">
-//                 <input type="checkbox" value="Jack" v-model="carToEdit.prevOwners" />  Jack
-//                 <input type="checkbox" value="John" v-model="carToEdit.prevOwners" /> John
+        <section v-if="note" class="edit-note app-main">
 
-//                 <select v-model="selected" multiple>
-//                     <option>A</option>
-//                     <option>B</option>
-//                     <option>C</option>
-//                 </select>
+        <p>sdasfsdf</p>
+            <!-- <h4>{{formTitle}}</h4>
+            <form @submit.prevent="save">
+               
+              
+                    <component :is="note"  :info="info" @setVal="setAns($event ,note.id)"></component>
+                    
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id quaerat alias minima tenetur, animi error iure placeat possimus asperiores, veritatis, illo autem corrupti optio exercitationem repudiandae delectus voluptatum molestiae! Neque.</p>
 
 
-//                 <button :disabled="!isValid">Save</button>
-//             </form>
-//             <hr />
-//             <pre>{{carToEdit}}</pre>
-//             <pre>{{selected}}</pre>
-//         </section>
-//     `,
-//     data() {
-//         return {
-//             carToEdit: carService.getEmptyCar(),
-//             selected: []
-//         };
-//     },
-//     created() {
-//         const id = this.$route.params.carId;
-//         if (id) {
-//             carService.get(id)
-//                 .then(car => this.carToEdit = car);
-//         }
-//     },
-//     mounted(){
-//         this.$refs.vendor.focus()
-//     },
-//     methods: {
-//         save() {
-//             if (!this.carToEdit.vendor) return;
-//             carService.save(this.carToEdit)
-//                 .then(car => {
-//                     eventBus.emit('show-msg', { txt: 'Saved succesfully', type: 'success' })
-//                     this.$router.push('/car')
-//                 });
-//         }
-//     },
-//     computed: {
-//         formTitle() {
-//             const id = this.$route.params.carId;
-//             return id ? 'Edit car' : 'Add car';
-//         },
-//         isValid() {
-//             return !!this.carToEdit.vendor
-//         }
-//     },
-//     watch: {
-//         carToEdit : {
-//             handler() {
-//                 console.log('Edited Car was changed');
-//             },
-//             deep: true
-//         }
-//     }
-// };
+                <button :disabled="!isValid">Save</button>
+            </form>
+            <hr />
+            <pre>{{noteToEdit}}</pre>
+            <pre>{{selected}}</pre> -->
+        </section>
+    `,
+    data() {
+        return {
+            // noteToEdit: noteService.getEmptyNote(),
+            // selected: []
+            note: null,
+            noteId: null
+        };
+    },
+    created() {
+        const id = this.$route.params.noteId;
+        // console.log(id)
+        noteService.get(id)
+
+            .then(note => this.note = note);
+    },
+    // mounted() {
+    //     this.$refs.vendor.focus()
+    // },
+    methods: {
+        // save() {
+        //     if (!this.noteToEdit.vendor) return;
+        //     noteService.save(this.noteToEdit)
+        //         .then(note => {
+        //             eventBus.emit('show-msg', { txt: 'Saved succesfully', type: 'success' })
+        //             this.$router.push('/note')
+        //         });
+        // },
+        setFilter() {
+            this.$emit('edit', { ...this.filterBy });
+        }
+    },
+    computed: {
+        // formTitle() {
+        //     const id = this.$route.params.noteId;
+        //     return id ? 'Edit note' : 'Add note';
+        // },
+        // isValid() {
+        //     return !!this.noteToEdit.note
+        // },
+        noteId() {
+            return this.$route.params.noteId
+        },
+    },
+    // watch: {
+    //     noteToEdit: {
+    //         handler() {
+    //             console.log('Edited note was changed');
+    //         },
+    //         deep: true
+    //     }
+    // },
+    // components: {
+    //     noteTxt,
+    // },
+};

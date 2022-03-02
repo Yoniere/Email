@@ -27,7 +27,7 @@ export default {
             return "list" + this._uid;
         }
     },
-    created() {
-        console.log(this._uid);
-    }
+    // created() {
+    //     console.log(this._uid);
+    // }
 };
