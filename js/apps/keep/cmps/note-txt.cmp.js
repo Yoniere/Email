@@ -6,7 +6,7 @@ export default {
                   <option v-for="opt in info.opts" :value="opt" />
               </datalist>
               <label>
-                  {{info.label}}
+                  {{info.txt}}
                   <input type="text" v-model="val" @change="reportVal" :list="listId" />
               </label>  
           </section>
@@ -27,7 +27,7 @@ export default {
             return "list" + this._uid;
         }
     },
-    // created() {
-    //     console.log(this._uid);
-    // }
+    created() {
+        console.log(this._uid);
+    }
 };
