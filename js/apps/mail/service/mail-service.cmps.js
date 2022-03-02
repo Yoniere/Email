@@ -8,6 +8,7 @@ export const mailService = {
     query,
     get,
     remove,
+    put,
 }
 
 function query() {
@@ -20,6 +21,10 @@ function get(emailId) {
 
 function remove(emailId) {
     return storageService.remove(EMAILS_KEY, emailId);
+}
+
+function put(id) {
+    return storageService.put(EMAILS_KEY, id);
 }
 
 function _createEmails() {
