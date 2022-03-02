@@ -8,6 +8,7 @@ export const noteService = {
     getById,
     query,
     get,
+    remove,
 }
 
 function getById() {
