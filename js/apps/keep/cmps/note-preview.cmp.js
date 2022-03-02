@@ -7,7 +7,7 @@ export default {
             <p>note type: {{note.type}}</p>
             
             <!-- <router-link :to="'/note/'+note.id">Details</router-link> -->
-            <pre>{{note}}</pre>
+           
         </section>
     `,
     data() {

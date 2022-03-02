@@ -1,6 +1,6 @@
 
 import noteList from '../cmps/note-list.cmp.js';
-// import { eventAppsus } from '../../../main-services/event-appsus-service.js';
+import { eventApp } from '../../../main-services/eventapp-service.js';
 import { noteService } from '../services/note.service.js';
 // import notesFilter from '../../keep/cmps/note-filter.cmp.js';
 
@@ -10,7 +10,7 @@ export default {
             <h2 >hollaaa</h2>
              
             <!-- <note-filter @filtered="setFilter" v-if="!selectedNote"/> -->
-            <note-list :notes='notes' ></note-list>
+            <note-list :notes='notes' @remove="removeNote"  @selected="selectNote" ></note-list>
           <!-- :notes="notesToShow" @remove="removeNote"  @selected="selectNote" -->
                   
         </section>
@@ -35,23 +35,21 @@ export default {
         setFilter(filterBy) {
             this.filterBy = filterBy;
         },
-        // removeNote(id) {
-        //     noteService.remove(id)
-        //         .then(() => {
-        //             const idx = this.notes.findIndex((note) => note.id === id);
-        //             this.notes.splice(idx, 1);
-        //             eventAppsus.emit('show-msg', { txt: 'Deleted succesfully', type: 'success' });
-        //         })
-        //         .catch(err => {
-        //             console.error(err);
-        //             eventAppsus.emit('show-msg', { txt: 'Error - please try again later', type: 'error' });
-        //         });
-        // },
+        removeNote(id) {
+            noteService.remove(id)
+                .then(() => {
+                    const idx = this.notes.findIndex((note) => note.id === id);
+                    this.notes.splice(idx, 1);
+                    eventApp.emit('show-msg', { txt: 'Deleted succesfully', type: 'success' });
+                })
+                .catch(err => {
+                    console.error(err);
+                    eventApp.emit('show-msg', { txt: 'Error - please try again later', type: 'error' });
+                });
+        },
     },
     computed: {
-        notesToShow() {
 
-        }
     },
     // notesToShow() {
     //     if (!this.filterBy) return this.notes
@@ -66,7 +64,7 @@ export default {
         noteService,
         noteList,
         // notesFilter,
-        // eventAppsus
+        eventApp
     }
 };
 

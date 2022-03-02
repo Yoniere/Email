@@ -12,4 +12,18 @@ function emit(eventName, data) {
     window.dispatchEvent(new CustomEvent(eventName, { detail: data }));
 }
 
-export const eventBus = { on, emit };
+export const eventApp = { on, emit };
+
+
+export function showErrorMsg(txt) {
+    eventApp.emit('show-msg', { txt, type: 'error' });
+}
+export function showSuccessMsg(txt) {
+    eventApp.emit('show-msg', { txt, type: 'success' });
+}
+
+
+
+
+
+
