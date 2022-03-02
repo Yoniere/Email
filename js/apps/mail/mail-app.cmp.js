@@ -1,5 +1,7 @@
 import { mailService } from "./service/mail-service.cmps.js";
+import { eventApp } from "../../main-services/eventapp-service.js";
 import mailList from "./cmps/mail-list.cmp.js";
+import mailDetails from "./pages/mail-details.cmp.js";
 
 export default {
     template: `
@@ -16,12 +18,20 @@ export default {
         mailService.query()
             .then(emails => this.emails = emails)
 
-    },
-    methods: {
+        // this.unsubscribe = eventApp.on(console.log('he'), (id) => {
 
+        // })
+    },
+
+
+    unmounted() {
+        // this.unsubscribe()
+    },
+
+    methods: {
 
     },
     components: {
         mailList
     }
-};
+}
