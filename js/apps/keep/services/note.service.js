@@ -1,6 +1,5 @@
-
-// import { utilService } from '../services/util-service.js';
-import { storageService } from './main-services/async-storage.services.js'
+import { utilService } from '../services/util-service.js';
+import { storageService } from '../../../main-services/async-storage.services.js'
 
 const NOTES_KEY = 'notes';
 
@@ -31,8 +30,7 @@ function get(noteId) {
 
 }
 
-const notes = [
-    {
+const notes = [{
         id: "n101",
         type: "note-txt",
         isPinned: true,
