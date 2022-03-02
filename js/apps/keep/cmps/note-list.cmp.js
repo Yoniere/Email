@@ -32,9 +32,11 @@ export default {
     methods: {
         remove(id) {
             this.$emit('remove', id);
+            console.log('id', id);
         },
         select(note) {
-            this.$emit('selected', note);
+            this.$router.push(`/book/${note.id}`)
+            console.log('note', note);
         }
     },
     computed: {},
