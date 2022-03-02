@@ -1,10 +1,9 @@
-// import bookApp from './views/book-app.cmp.js';
 import homePage from './views/home-page.cmp.js';
 import noteInd from './apps/keep/pages/note-index.cmp.js';
+import mailApp from './apps/mail/mail-app.cmp.js';
 
 
-const routes = [
-    {
+const routes = [{
         path: '/',
         component: homePage
     },
@@ -14,10 +13,10 @@ const routes = [
         component: noteInd,
     },
 
-    // {
-    //     path: '/book',
-    //     component: bookApp
-    // },
+    {
+        path: '/mail',
+        component: mailApp
+    },
     // {
     //     path: '/book/:bookId',
     //     component: bookDetails
