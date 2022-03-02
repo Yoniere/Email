@@ -1,6 +1,3 @@
-
-
-
 export default {
     template: `
         <header class="app-header app-main">
@@ -11,6 +8,7 @@ export default {
                 <router-link to="/">Home</router-link> |
                 <!-- <router-link to="/about">About</router-link>| -->
                 <router-link to="/note-index">Keep</router-link> |
+                <router-link to="/mail">Mail</router-link> |
                
             </nav>
                
