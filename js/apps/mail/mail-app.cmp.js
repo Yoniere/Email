@@ -1,19 +1,20 @@
+import { mailService } from "./service/mail-service.cmps.js";
+
 export default {
     template: `
-        <section class="note-index app-main">
-            <h2 >holla</h2>
-            
-
-           
+        <section class="mail-app app-main">
+        {{emails}}
+        <mail-list :emails="emails"></mail-list>
         </section>
     `,
     data() {
         return {
-
+            emails: [],
         }
     },
     created() {
-
+        mailService.query()
+            .then(emails => this.emails = emails)
 
     },
     methods: {
