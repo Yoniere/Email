@@ -1,0 +1,12 @@
+.note-list {
+  background-color: rgb(189, 197, 79);
+  display: flex;
+  margin: auto;
+}
+
+.note-preview-container {
+  background-color: burlywood;
+  flex-basis: 20%;
+  margin: auto;
+  padding: 20px;
+}
