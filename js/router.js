@@ -1,6 +1,6 @@
 // import bookApp from './views/book-app.cmp.js';
 import homePage from './views/home-page.cmp.js';
-import noteIndex from './apps/keep/pages/note-index.cmp.js';
+import noteInd from './apps/keep/pages/note-index.cmp.js';
 
 
 const routes = [
@@ -11,7 +11,7 @@ const routes = [
 
     {
         path: '/note-index',
-        component: noteIndex,
+        component: noteInd,
     },
 
     // {

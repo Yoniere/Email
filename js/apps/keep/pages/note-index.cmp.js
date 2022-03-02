@@ -1,11 +1,12 @@
 
 
 
+import { noteService } from '../services/note.service.js'
 
 
 export default {
     template: `
-        <section class="noteIndex app-main">
+        <section class="note-index app-main">
             <h2 >holla</h2>
             
 
@@ -26,7 +27,7 @@ export default {
 
     },
     components: {
-
+        noteService
     }
 };
 
