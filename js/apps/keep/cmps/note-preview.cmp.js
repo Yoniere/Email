@@ -10,34 +10,29 @@ export default {
     template: `
         <section class="note-preview">
        
-
-        <p>note id: {{note.id}}</p>
-        <p>note type: {{note.type}}</p>
-            
        
-        <!-- <div>{{key}}</div> -->
+        <p>note type: {{note.type}}</p>
+        <p>note type: {{note.info}}</p>
+        <!-- <div v-for="(note, idx) in notes">  -->
+            <component :is="note.type" :info="note.info" @setVal="setAns($event, idx)"></component>
+            <!-- <button v-on:click="selectBgColorNote" v-bind:style="{ color: color}" v-model="colorNote"> X<img src="img/color-icon.png" class="color-icon"></button> -->
+             <!-- </div> -->
 
-        <!-- <select class="form-control" v-model="selectedNote" :required @change="selectNote">
-             <option>Choose Province</option>
-              <option v-for="(note, idx) in notes" v-bind:value="note.info" >{{ note.type }}</option>
-              <component :is="note.type"  :info="note.info" @setVal="setAns($event, idx)"></component>
-        </select> -->
-        <div v-for="(note, idx) in notes"> 
-            <component :is="note.type"  :info="note.info" @setVal="setAns($event, idx)"></component> 
-             </div>
-                
-                <pre>{{answers}}</pre>
+             <!-- <div>{{answers}}</div> -->
+                <!-- <pre>{{answers.info}}</pre> -->
               
                
         </section>
     `,
+    // .change-color-model
 
     data() {
         return {
             notes: null,
             selectedNote: null,
             answers: [],
-
+            // colorNote: '#673AB7',
+            isClick: false,
         }
 
     },
@@ -47,6 +42,7 @@ export default {
                 this.notes = notes
                 this.answers = new Array(this.notes.length)
             })
+        console.log('answers', this.answers);
     },
     methods: {
         setAns(ans, idx) {
@@ -58,6 +54,9 @@ export default {
 
         },
 
+        // selectBgColorNote() {
+        //     this.isClick = !this.isClick
+        // },
 
 
         selectNote(note) {
@@ -83,3 +82,10 @@ export default {
     }
 }
 
+
+
+//  <select class="form-control" v-model="selectedNote" :required @change="selectNote">
+// <option>Choose Province</option>
+//  <option v-for="(note, idx) in notes" v-bind:value="note.info" >{{ note.type }}</option>
+//  <component :is="note.type"  :info="note.info" @setVal="setAns($event, idx)"></component>
+// </select> 

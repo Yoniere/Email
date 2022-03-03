@@ -11,7 +11,9 @@ export const noteService = {
     remove,
     save,
     removeNote,
-    getEmptyNote
+    getEmptyNote,
+    put,
+    // addNote
 }
 
 function getEmptyNote(type = '') {
@@ -21,12 +23,20 @@ function getEmptyNote(type = '') {
         info: []
     };
 }
-// function _createNote(type, title = 'keep') {
-//     const note = getEmptyCar(type, title)
-//     note.id = utilService.makeId()
-//     return note;
-// }
 
+// function addNote(noteId, note) {
+//     return get(noteId).then(note => {
+//         note.id = utilService.makeId();
+//         if (!Array.isArray(note.newNotes)) {
+//             note.newNotes = [];
+//             note.newNotes.push(note);
+//         } else note.newNotes.push(note);
+//         storageService.put(NOTE_KEY, note);
+//         console.log(note)
+//         return note
+//     })
+
+// }
 
 function query() {
     return storageService.query(NOTES_KEY);
@@ -47,6 +57,15 @@ function get(noteId) {
 
 }
 
+function put(note) {
+
+    return storageService.put(NOTES_KEY, note)
+
+}
+// function getByType() {
+//     return storageService.get(NOTES_KEY, noteId)
+// }
+
 function save(note) {
     if (note.id) return storageService.put(NOTES_KEY, note);
     else return storageService.post(NOTES_KEY, note);
@@ -63,7 +82,7 @@ function _createNotes() {
             {
                 id: "n101",
                 type: "note-txt",
-                isPinned: true,
+                isPinned: false,
                 info: {
                     txt: "Fullstack Me Baby!"
                 }
@@ -90,7 +109,6 @@ function _createNotes() {
                     ]
                 }
             },
-
             {
                 id: "n104",
                 type: "note-video",
@@ -108,8 +126,9 @@ function _createNotes() {
     return notes
 }
 
+// function getColor() {
+//     let color = utilService.loadFromStorage(NOTES_KEY);
 
-
-// function getByType() {
-//     return Promise.resolve(notes);
 // }
+
+

@@ -9,7 +9,7 @@ export default {
             
             <note-list :notes='notes' @remove="removeNote"  @selected="selectNote" ></note-list>
             <!-- <div class="actions"> -->
-                          <select name="LeaveType" v-model="key" @change="setNoteType" class="form-control">
+                          <select v-model="key" @change="setNoteType" class="form-control">
                 
                           <option v-for="(note, idx) in notes" v-bind:value="note.info" >{{ note.type }}</option>
                     </select>
@@ -34,9 +34,8 @@ export default {
 
         },
         setNoteType() {
-            console.log(this.key)
-            return this.key.txt
 
+            return this.key.txt
 
 
         },

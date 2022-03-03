@@ -13,9 +13,9 @@ export default {
                    
                        <button @click="remove(note.id)">X</button>
                        <!-- <button @click="select(note)">Details</button> -->
-                       <!-- <router-link :to="'/note/edit/'+note.id">Edit</router-link> -->
+                       
 
-                       <router-link :to="'/note/edit/'+note.id">Edit</router-link>
+                       <router-link :note='note' :to="'/note/edit/'+note.id">Edit</router-link>
                        <!-- <button @click="select(notes)">Details</button> -->
                     <!-- </div> -->
                 </li>
@@ -39,10 +39,12 @@ export default {
         },
 
 
+
     },
     computed: {},
     components: {
         notePreview,
-        noteService, noteEdit
+        noteService,
+        noteEdit,
     },
 }
