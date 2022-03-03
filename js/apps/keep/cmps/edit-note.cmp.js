@@ -1,22 +1,25 @@
 import { noteService } from '../services/note.service.js'
+import { eventApp } from '../../../main-services/eventapp-service.js';
 import noteTxt from './note-txt.cmp.js';
 import noteTodos from './note-todos.cmp.js'
 import noteVideo from './note-video.cmp.js'
-
+// import notePreview from './note-preview.cmp.js'
 export default {
     // props: ['note'],
     template: `
     
         <section class="edit-note app-main">
-       
-
+        <h4>{{formTitle}}</h4>
+        <form  @submit.prevent="save">
             <div v-if='noteToEdit' > 
-            <component :is="noteToEdit.type" :info="noteToEdit.info"  @setVal="setAns($event, idx)"></component> 
+            <!-- <note-preview :note='note' /> -->
+            <component :is="noteToEdit.type" :info="noteToEdit.info" @setVal="setAns($event, idx)" ></component> 
              </div>
-                    
+                  
+             <button @click="save">Save</button>
      
-            <hr />
-           
+     
+          </form>
         
         </section>
     `,
@@ -38,24 +41,37 @@ export default {
     },
     
     methods: {
-        hello() {
-            console.log(this.note)
+        save() {
+            // console.log('this.noteToEdit',this.noteToEdit);
+            if (!this.noteToEdit.type) return;
+            noteService.put(this.noteToEdit)
+                 .then(() => {
+                    const idx = this.noteToEdit.findIndex(note => note.id === id)
+                    console.log('idx',this.noteToEdit);
+                    // this.noteToEdit.splice(idx, 1);
+                    return note
+                 });
         },
         setAns(ans, idx) {
-            console.log('Setting the answer: ', ans, 'idx:', idx);  
+            console.log('Setting the newEdit: ', ans, 'idx:', idx);  
             this.newEdit.splice(idx, 1, ans)
 
         },
     },
     computed: {
+        formTitle() {
+            const id = this.$route.params.noteId;
+            return id ? 'Edit note' : 'Add note';
+        },
       
+  
     
     },
  
     components: {
         noteTxt,
         noteTodos,
-        noteVideo
+        noteVideo,
         // notePreview
     },
 };

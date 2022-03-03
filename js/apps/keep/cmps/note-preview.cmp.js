@@ -12,10 +12,10 @@ export default {
        
        
         <p>note type: {{note.type}}</p>
-
+        <p>note type: {{note.info}}</p>
         <!-- <div v-for="(note, idx) in notes">  -->
             <component :is="note.type" :info="note.info" @setVal="setAns($event, idx)"></component>
-            <button v-on:click="selectBgColorNote" v-bind:style="{ color: color}" v-model="colorNote"> X<img src="img/color-icon.png" class="color-icon"></button>
+            <!-- <button v-on:click="selectBgColorNote" v-bind:style="{ color: color}" v-model="colorNote"> X<img src="img/color-icon.png" class="color-icon"></button> -->
              <!-- </div> -->
 
              <!-- <div>{{answers}}</div> -->
@@ -31,7 +31,7 @@ export default {
             notes: null,
             selectedNote: null,
             answers: [],
-            colorNote: '#673AB7',
+            // colorNote: '#673AB7',
             isClick: false,
         }
 
@@ -54,9 +54,9 @@ export default {
 
         },
 
-        selectBgColorNote() {
-            this.isClick = !this.isClick
-        },
+        // selectBgColorNote() {
+        //     this.isClick = !this.isClick
+        // },
 
 
         selectNote(note) {

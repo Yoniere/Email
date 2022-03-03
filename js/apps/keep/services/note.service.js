@@ -12,7 +12,8 @@ export const noteService = {
     save,
     removeNote,
     getEmptyNote,
-    addNote
+    put,
+    // addNote
 }
 
 function getEmptyNote(type = '') {
@@ -23,19 +24,19 @@ function getEmptyNote(type = '') {
     };
 }
 
-function addNote(noteId, review) {
-    return get(noteId).then(note => {
-        review.id = utilService.makeId();
-        if (!Array.isArray(note.newNotes)) {
-            note.newNotes = [];
-            note.newNotes.push(review);
-        } else note.newNotes.push(review);
-        storageService.put(NOTE_KEY, note);
-        console.log(note)
-        return note
-    })
+// function addNote(noteId, note) {
+//     return get(noteId).then(note => {
+//         note.id = utilService.makeId();
+//         if (!Array.isArray(note.newNotes)) {
+//             note.newNotes = [];
+//             note.newNotes.push(note);
+//         } else note.newNotes.push(note);
+//         storageService.put(NOTE_KEY, note);
+//         console.log(note)
+//         return note
+//     })
 
-}
+// }
 
 function query() {
     return storageService.query(NOTES_KEY);
@@ -56,6 +57,11 @@ function get(noteId) {
 
 }
 
+function put(note) {
+
+    return storageService.put(NOTES_KEY, note)
+
+}
 // function getByType() {
 //     return storageService.get(NOTES_KEY, noteId)
 // }
