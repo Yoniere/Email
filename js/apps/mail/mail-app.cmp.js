@@ -1,7 +1,6 @@
 import { mailService } from "./service/mail-service.cmps.js";
 import { eventApp } from "../../main-services/eventapp-service.js";
 import mailList from "./cmps/mail-list.cmp.js";
-import mailDetails from "./pages/mail-details.cmp.js";
 import mailCompose from "./cmps/mail-compose.cmp.js";
 import mailFilter from "./cmps/mail-filter.cmp.js";
 
@@ -9,8 +8,14 @@ export default {
     template: `
         <section class="mail-app app-main">
             <mail-filter @filtered='setfilterBy'></mail-filter>
+
+            <button @click="sortByTitle"> Sort By Subject</button>
+            <button>Sort By Date</button>
+
             <mail-compose :emails='emails' @sendEmail='addSentEmail' ></mail-compose>
+
             <div>unread Emails: {{unreadEmailsCounter()}}</div>
+
         <mail-list v-if :emails="emailsToShow()" :emails="emails" @readStatus='isRead'></mail-list>
         </section>
     `,
@@ -20,8 +25,9 @@ export default {
             filterBy: {
                 text: '',
                 isRead: null,
+                emailForSort: '',
             }
-            // unreadEmails,
+
         }
     },
     created() {
@@ -92,8 +98,19 @@ export default {
             } else {
                 return this.emails.filter(email => regex.test(email.body || email.subject) && (email.isRead === this.filterBy.isRead))
             }
+        },
+        sortByTitle() {
+            this.emailForSort = this.emails.slice()
+            console.log(this.emailForSort)
+            this.emailForSort.subject.sort();
+            console.log(this.emailForSort);
+            console.log(this.emails)
         }
     },
+    computed: {
+
+    },
+
     components: {
         mailList,
         mailCompose,
