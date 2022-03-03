@@ -106,7 +106,11 @@ function _createNotes() {
                     label: "Get my stuff together",
                     todos: [
                         { txt: "Driving liscence", doneAt: null },
-                        { txt: "Coding power", doneAt: 187111111 }
+                        { txt: "Coding power", doneAt: 187111111 },
+                        { txt: " ", doneAt: null },
+                        { txt: " ", doneAt: 187111111 },
+                        { txt: " ", doneAt: null },
+                        { txt: " ", doneAt: 187111111 },
                     ]
                 }
             },

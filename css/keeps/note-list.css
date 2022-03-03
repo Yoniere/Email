@@ -1,18 +1,20 @@
 .note-list {
-  background-color: rgb(189, 197, 79);
   display: flex;
-  margin: auto;
+
+  text-align: center;
 }
 
 .note-preview-container {
-  background-color: burlywood;
+  display: flex;
+  background-color: rgb(238, 226, 58);
   flex-basis: 20%;
   margin: auto;
+  margin-top: 20px;
   padding: 20px;
-}
-
-.edit-note {
-  height: 300px;
-  width: 300px;
-  background-color: rgb(136, 247, 154);
+  height: 200px;
+  flex-wrap: wrap;
+  align-content: stretch;
+  justify-content: space-around;
+  align-items: baseline;
+  flex-direction: row;
 }
