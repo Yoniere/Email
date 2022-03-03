@@ -7,7 +7,7 @@ import mailCompose from "./cmps/mail-compose.cmp.js";
 export default {
     template: `
         <section class="mail-app app-main">
-            <mail-compose ></mail-compose>
+            <mail-compose :emails='emails' @sendEmail='addSentEmail' ></mail-compose>
             <div>unread Emails: {{unreadEmailsCounter()}}</div>
         <mail-list :emails="emails" @readStatus='isRead'></mail-list>
         </section>
@@ -65,6 +65,11 @@ export default {
             }
             console.log(unreadCounter)
             return unreadCounter
+        },
+        addSentEmail(sentEmail) {
+            console.log(sentEmail)
+            mailService.post(sentEmail)
+                .then(email => this.emails.unshift(email))
         }
     },
     components: {
