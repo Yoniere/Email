@@ -1,4 +1,5 @@
 import noteList from '../cmps/note-list.cmp.js';
+import noteFilter from '../cmps/note-filter.cmp.js';
 import { eventApp } from '../../../main-services/eventapp-service.js';
 import { noteService } from '../services/note.service.js';
 
@@ -7,12 +8,13 @@ export default {
     template: `
         <section class="note-index app-main">
             
-            <note-list :notes='notes' @remove="removeNote"  @selected="selectNote" ></note-list>
+            <note-list :notes='notesForDisplay' @remove="removeNote"  @selected="selectNote" ></note-list>
             <!-- <div class="actions"> -->
-                          <select v-model="key" @change="setNoteType" class="form-control">
+            <note-filter @filtered="setFilter" />
+                          <!-- <select v-model="key" @change="setNoteType" class="form-control">
                 
                           <option v-for="(note, idx) in notes" v-bind:value="note.info" >{{ note.type }}</option>
-                    </select>
+                    </select> -->
         </section>
     `,
     data() {
@@ -54,13 +56,18 @@ export default {
         },
     },
     computed: {
-
+        notesForDisplay() {
+            if (!this.filterBy) return this.notes;
+            const regex = new RegExp(this.filterBy.vendor, 'i');
+            return this.notes.filter(note => regex.test(note.vendor));
+        }
     },
 
     components: {
         noteService,
         noteList,
-        eventApp
+        eventApp,
+        noteFilter
     }
 };
 
