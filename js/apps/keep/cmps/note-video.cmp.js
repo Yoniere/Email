@@ -2,7 +2,7 @@
 export default {
     template: `
           <section >
-          <video width="320" height="240" ref="videoPlayer">
+          <video width="320" height="240" ref="videoPlayer" @change="reportVal">
     <source
       src="https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4"
       type="video/mp4"

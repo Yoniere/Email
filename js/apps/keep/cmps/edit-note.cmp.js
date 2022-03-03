@@ -25,7 +25,7 @@ export default {
     `,
     data() {
         return {
-            newEdit: [],
+            newEdit:noteService.getEmptyNote() ,
             noteToEdit:null,
 
         };
@@ -33,6 +33,10 @@ export default {
     
 
     created() {
+      
+        // if (id===this.$route.params.noteId) {
+            
+        // }
         const id = this.$route.params.noteId;
         noteService.get(id)
             .then(note => {
@@ -49,10 +53,10 @@ export default {
             if (!this.noteToEdit.type) return;
             noteService.put(this.noteToEdit)
             
-                 .then((notes) => {
+                //  .then((notes) => {
               
-                    console.log('notes1234',notes);
-                 });
+                   
+                //  });
         },
         updateNote(val){
         console.log('val',val);
@@ -62,6 +66,12 @@ export default {
             if (this.noteToEdit.type === 'note-video') {
                 this.noteToEdit.info.videos = val;
             }
+            if (this.noteToEdit.type === 'note-todos') {
+                this.noteToEdit.info.todos = val;
+            }
+            if (this.noteToEdit.type === 'note-img') {
+                this.noteToEdit.info.url = val;
+            }
         },
     },
     computed: {
@@ -70,7 +80,7 @@ export default {
             return id ? 'Edit note' : 'Add note';
         },
       
-  
+        
     
     },
  

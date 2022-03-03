@@ -13,30 +13,31 @@ export const noteService = {
     removeNote,
     getEmptyNote,
     put,
-    // addNote
+    addNote
 }
 
 function getEmptyNote(type = '') {
+
     return {
-        id: '',
+        id: utilService.makeId(),
         type,
         info: []
     };
 }
 
-// function addNote(noteId, note) {
-//     return get(noteId).then(note => {
-//         note.id = utilService.makeId();
-//         if (!Array.isArray(note.newNotes)) {
-//             note.newNotes = [];
-//             note.newNotes.push(note);
-//         } else note.newNotes.push(note);
-//         storageService.put(NOTE_KEY, note);
-//         console.log(note)
-//         return note
-//     })
+function addNote(noteId, note) {
+    return get(noteId).then(note => {
+        note.id = utilService.makeId();
+        if (!Array.isArray(note.newNotes)) {
+            note.newNotes = [];
+            note.newNotes.push(note);
+        } else note.newNotes.push(note);
+        storageService.put(NOTE_KEY, note);
+        console.log(note)
+        return note
+    })
 
-// }
+}
 
 function query() {
     return storageService.query(NOTES_KEY);
