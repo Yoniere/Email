@@ -3,12 +3,12 @@ export default {
     template: `
           <section >
               <datalist :id="listId">
-                  <option v-for="opt in info.opts" :value="opt" > </option>
+                  <option v-for="opt in info.opts" :value="opt"></option>
               </datalist>
               <label>
                   <input type="text" v-model="val" @change="reportVal" :list="listId" />
                 </label>  
-           <p>{{val}}</p>    
+           <p> {{val}}</p>    
           </section>
           `,
     props: ["info"],

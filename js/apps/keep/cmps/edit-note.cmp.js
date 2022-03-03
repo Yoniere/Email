@@ -10,10 +10,10 @@ export default {
     
         <section class="edit-note app-main">
         <h4>{{formTitle}}</h4>
-        <form  @submit.prevent="save">
+        <form >
             <div v-if='noteToEdit' > 
             <!-- <note-preview :note='note' /> -->
-            <component :is="noteToEdit.type" :info="noteToEdit.info" @setVal="setAns($event, idx)" ></component> 
+            <component :is="noteToEdit.type" :info="noteToEdit.info" @setVal="updateNote"></component> 
              </div>
                   
              <button @click="save">Save</button>
@@ -30,32 +30,38 @@ export default {
 
         };
     },
+    
 
     created() {
         const id = this.$route.params.noteId;
         noteService.get(id)
             .then(note => {
                 this.noteToEdit = note
+                console.log('created',this.noteToEdit );
             });
 
     },
     
     methods: {
         save() {
-            // console.log('this.noteToEdit',this.noteToEdit);
+
+            console.log('this.noteToEdit',this.noteToEdit);
             if (!this.noteToEdit.type) return;
             noteService.put(this.noteToEdit)
-                 .then(() => {
-                    const idx = this.noteToEdit.findIndex(note => note.id === id)
-                    console.log('idx',this.noteToEdit);
-                    // this.noteToEdit.splice(idx, 1);
-                    return note
+            
+                 .then((notes) => {
+              
+                    console.log('notes1234',notes);
                  });
         },
-        setAns(ans, idx) {
-            console.log('Setting the newEdit: ', ans, 'idx:', idx);  
-            this.newEdit.splice(idx, 1, ans)
-
+        updateNote(val){
+        console.log('val',val);
+            if (this.noteToEdit.type === 'note-txt') {
+                this.noteToEdit.info.txt = val;
+            }
+            if (this.noteToEdit.type === 'note-video') {
+                this.noteToEdit.info.videos = val;
+            }
         },
     },
     computed: {

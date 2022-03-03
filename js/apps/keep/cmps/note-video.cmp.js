@@ -49,7 +49,12 @@ export default {
 
             this.$refs.videoPlayer.src = "https://www.youtube.com/watch?v=nqwQpXoSN7Q";
 
+        },
+
+        reportVal() {
+            this.$emit("setVal", this.val);
         }
+
     },
 };
 

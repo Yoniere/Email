@@ -6,7 +6,7 @@ export default {
         <form action="" type="submit">
             <label>
             note opt:
-            <input type="text" v-model="filterBy.title" placeholder="Search..."> 
+            <input type="text" v-model="filterBy.type" placeholder="Search..."> 
             </label>
           
             <button @click.prevent="setFilter">Search</button>
@@ -16,7 +16,7 @@ export default {
     data() {
         return {
             filterBy: {
-                title: '',
+                type: '',
 
             },
         };

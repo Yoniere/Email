@@ -17,7 +17,7 @@ export default {
 
                        <router-link :note='note' :to="'/note/edit/'+note.id">Edit</router-link>
                        <!-- <button @click="select(notes)">Details</button> -->
-                    <!-- </div> -->
+                
                 </li>
             </ul>
             </section>         
