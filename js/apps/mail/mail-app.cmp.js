@@ -3,18 +3,24 @@ import { eventApp } from "../../main-services/eventapp-service.js";
 import mailList from "./cmps/mail-list.cmp.js";
 import mailDetails from "./pages/mail-details.cmp.js";
 import mailCompose from "./cmps/mail-compose.cmp.js";
+import mailFilter from "./cmps/mail-filter.cmp.js";
 
 export default {
     template: `
         <section class="mail-app app-main">
+            <mail-filter @filtered='setfilterBy'></mail-filter>
             <mail-compose :emails='emails' @sendEmail='addSentEmail' ></mail-compose>
             <div>unread Emails: {{unreadEmailsCounter()}}</div>
-        <mail-list :emails="emails" @readStatus='isRead'></mail-list>
+        <mail-list v-if :emails="emailsToShow()" :emails="emails" @readStatus='isRead'></mail-list>
         </section>
     `,
     data() {
         return {
             emails: [],
+            filterBy: {
+                text: '',
+                isRead: null,
+            }
             // unreadEmails,
         }
     },
@@ -70,10 +76,27 @@ export default {
             console.log(sentEmail)
             mailService.post(sentEmail)
                 .then(email => this.emails.unshift(email))
+        },
+
+        setfilterBy(filterBy) {
+            this.filterBy = filterBy
+            console.log(this.filterBy)
+        },
+        emailsToShow() {
+            if (!this.filterBy) return this.emails;
+            console.log(this.filterBy)
+            const regex = new RegExp(this.filterBy.text, 'i');
+            if (this.filterBy.isRead === null) {
+                console.log('hello')
+                return this.emails.filter(email => regex.test(email.body || email.subject))
+            } else {
+                return this.emails.filter(email => regex.test(email.body || email.subject) && (email.isRead === this.filterBy.isRead))
+            }
         }
     },
     components: {
         mailList,
         mailCompose,
+        mailFilter,
     }
 }
