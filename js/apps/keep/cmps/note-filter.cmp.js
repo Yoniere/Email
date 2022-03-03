@@ -5,7 +5,7 @@ export default {
         <section class="note-filter">
         <form action="" type="submit">
             <label>
-            Find your book:
+            note opt:
             <input type="text" v-model="filterBy.title" placeholder="Search..."> 
             </label>
           

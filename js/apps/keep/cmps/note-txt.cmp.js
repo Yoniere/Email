@@ -3,7 +3,7 @@ export default {
     template: `
           <section >
               <datalist :id="listId">
-                  <option v-for="opt in info.opts" :value="opt" >
+                  <option v-for="opt in info.opts" :value="opt" > </option>
               </datalist>
               <label>
                   {{info.txt}}

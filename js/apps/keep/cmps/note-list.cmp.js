@@ -1,6 +1,7 @@
 import notePreview from './note-preview.cmp.js'
 import { noteService } from '../services/note.service.js'
 import noteEdit from './edit-note.cmp.js';
+
 export default {
     props: ['notes'],
     template: `
@@ -9,13 +10,14 @@ export default {
                 <li v-for='note in notes'  class="note-preview-container" >
             
                    <note-preview :note='note' />
-                   <div class="actions">
+                   
                        <button @click="remove(note.id)">X</button>
                        <!-- <button @click="select(note)">Details</button> -->
                        <!-- <router-link :to="'/note/edit/'+note.id">Edit</router-link> -->
+
                        <router-link :to="'/note/edit/'+note.id">Edit</router-link>
                        <!-- <button @click="select(notes)">Details</button> -->
-                    </div>
+                    <!-- </div> -->
                 </li>
             </ul>
             </section>         
@@ -23,6 +25,7 @@ export default {
 
     data() {
         return {
+
         }
     },
 
@@ -33,7 +36,9 @@ export default {
         },
         select(note) {
             this.$emit('selected', note);
-        }
+        },
+
+
     },
     computed: {},
     components: {
