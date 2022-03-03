@@ -5,7 +5,7 @@ const NOTES_KEY = 'notesDB';
 _createNotes()
 
 export const noteService = {
-    // getByType,
+    getByType,
     query,
     get,
     remove,
@@ -63,7 +63,7 @@ function _createNotes() {
             {
                 id: "n101",
                 type: "note-txt",
-                isPinned: true,
+                isPinned: false,
                 info: {
                     txt: "Fullstack Me Baby!"
                 }
@@ -90,7 +90,6 @@ function _createNotes() {
                     ]
                 }
             },
-
             {
                 id: "n104",
                 type: "note-video",
@@ -110,6 +109,6 @@ function _createNotes() {
 
 
 
-// function getByType() {
-//     return Promise.resolve(notes);
-// }
+function getByType() {
+    return Promise.resolve(notes);
+}

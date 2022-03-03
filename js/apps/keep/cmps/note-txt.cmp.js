@@ -6,9 +6,9 @@ export default {
                   <option v-for="opt in info.opts" :value="opt" > </option>
               </datalist>
               <label>
-                  {{info.txt}}
                   <input type="text" v-model="val" @change="reportVal" :list="listId" />
-              </label>  
+                </label>  
+           <p> {{val}}</p>    
           </section>
           `,
     props: ["info"],

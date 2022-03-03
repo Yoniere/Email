@@ -15,7 +15,7 @@ export default {
                        <!-- <button @click="select(note)">Details</button> -->
                        <!-- <router-link :to="'/note/edit/'+note.id">Edit</router-link> -->
 
-                       <router-link :to="'/note/edit/'+note.id">Edit</router-link>
+                       <!-- <router-link :to="'/note/edit/'+note.id">Edit</router-link> -->
                        <!-- <button @click="select(notes)">Details</button> -->
                     <!-- </div> -->
                 </li>
