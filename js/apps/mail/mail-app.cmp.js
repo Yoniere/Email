@@ -3,20 +3,21 @@ import { eventApp } from "../../main-services/eventapp-service.js";
 import mailList from "./cmps/mail-list.cmp.js";
 import mailCompose from "./cmps/mail-compose.cmp.js";
 import mailFilter from "./cmps/mail-filter.cmp.js";
+import mailTypesList from "./cmps/mail-filtertypes-list.cmp.js";
 
 export default {
     template: `
         <section class="mail-app app-main">
-            <mail-filter @filtered='setfilterBy'></mail-filter>
+            <mail-filter  @filtered='setfilterBy'></mail-filter>
 
-            <button @click="sortByTitle"> Sort By Subject</button>
-            <button>Sort By Date</button>
+            <!-- <button @click="sortByTitle"> Sort By Subject</button> -->
+            <!-- <button>Sort By Date</button> -->
 
             <mail-compose :emails='emails' @sendEmail='addSentEmail' ></mail-compose>
 
             <div>unread Emails: {{unreadEmailsCounter()}}</div>
-
-        <mail-list v-if :emails="emailsToShow()" :emails="emails" @readStatus='isRead'></mail-list>
+             <mail-types-list @filterByType='filterEmailsByType' :emails="emails"></mail-types-list>
+        <mail-list  :emails="emailsToShow()" :emails="emails" @readStatus='isRead'></mail-list>
         </section>
     `,
     data() {
@@ -24,8 +25,9 @@ export default {
             emails: [],
             filterBy: {
                 text: '',
-                isRead: null,
-                emailForSort: '',
+                isRead: '',
+                type: '',
+                // emailForSort: '',
             }
 
         }
@@ -75,7 +77,7 @@ export default {
                 if (!this.emails[i].isRead)
                     unreadCounter++;
             }
-            console.log(unreadCounter)
+            // console.log(unreadCounter)
             return unreadCounter
         },
         addSentEmail(sentEmail) {
@@ -89,23 +91,34 @@ export default {
             console.log(this.filterBy)
         },
         emailsToShow() {
-            if (!this.filterBy) return this.emails;
+            if (!this.filterBy.text && !this.filterBy.isRead && !this.filterBy.type) return this.emails;
             console.log(this.filterBy)
             const regex = new RegExp(this.filterBy.text, 'i');
-            if (this.filterBy.isRead === null) {
-                console.log('hello')
-                return this.emails.filter(email => regex.test(email.body || email.subject))
-            } else {
-                return this.emails.filter(email => regex.test(email.body || email.subject) && (email.isRead === this.filterBy.isRead))
-            }
+            // if (this.filterBy.isRead === null) {
+            // console.log('hello')
+            // return this.emails.filter(email => regex.test(email.body || email.subject) && (email.type === this.filterBy.type))
+            // } else {
+            return this.emails.filter(email => regex.test(email.body || email.subject) && (email.isRead === this.filterBy.isRead) && (email.type === this.filterBy.type))
+                // }
         },
-        sortByTitle() {
-            this.emailForSort = this.emails.slice()
-            console.log(this.emailForSort)
-            this.emailForSort.subject.sort();
-            console.log(this.emailForSort);
-            console.log(this.emails)
-        }
+        filterEmailsByType(type) {
+            this.filterBy.type = type
+            console.log(this.filterBy)
+                // return this.emails.filter(email => email.type === type)
+        },
+
+        // emailsTypeToShow() {
+        //     if (!this.filterBy.type);
+        //     console.log(this.filterBy.type)
+        //     return this.emails.filter(email => email.type === this.filterBy.type)
+        // }
+        // sortByTitle() {
+        //     this.emailForSort = this.emails.slice()
+        //     console.log(this.emailForSort)
+        //     this.emailForSort.subject.sort();
+        //     console.log(this.emailForSort);
+        //     console.log(this.emails)
+        // }
     },
     computed: {
 
@@ -115,5 +128,6 @@ export default {
         mailList,
         mailCompose,
         mailFilter,
+        mailTypesList,
     }
 }
