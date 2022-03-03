@@ -1,0 +1,11 @@
+.edit-note {
+  display: flex;
+  height: 90vh;
+  width: 400px;
+  background-color: rgb(166 219 175);
+  margin: auto;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-content: flex-start;
+  justify-content: space-evenly;
+}

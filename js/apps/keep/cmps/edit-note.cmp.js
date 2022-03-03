@@ -1,8 +1,9 @@
-import { noteService } from '../services/note.service.js'
+import { noteService } from '../services/note.service.js';
 import { eventApp } from '../../../main-services/eventapp-service.js';
 import noteTxt from './note-txt.cmp.js';
-import noteTodos from './note-todos.cmp.js'
-import noteVideo from './note-video.cmp.js'
+import noteTodos from './note-todos.cmp.js';
+import noteVideo from './note-video.cmp.js';
+import noteImg from './note-img.cmp.js';
 // import notePreview from './note-preview.cmp.js'
 export default {
     // props: ['note'],
@@ -25,18 +26,17 @@ export default {
     `,
     data() {
         return {
-            newEdit:noteService.getEmptyNote() ,
+            newEdit:[] ,
             noteToEdit:null,
 
         };
     },
-    
+
+   
 
     created() {
       
-        // if (id===this.$route.params.noteId) {
-            
-        // }
+   
         const id = this.$route.params.noteId;
         noteService.get(id)
             .then(note => {
@@ -88,7 +88,7 @@ export default {
         noteTxt,
         noteTodos,
         noteVideo,
-        // notePreview
+        noteImg
     },
 };
 

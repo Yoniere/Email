@@ -1,5 +1,5 @@
 import { noteService } from '../services/note.service.js'
-// import noteImg from './note-img.cmp.js'
+import noteImg from './note-img.cmp.js'
 import noteTodos from './note-todos.cmp.js'
 import noteVideo from './note-video.cmp.js'
 import noteTxt from './note-txt.cmp.js'
@@ -14,7 +14,7 @@ export default {
         <p>note type: {{note.type}}</p>
         <p>note type: {{note.info}}</p>
         <!-- <div v-for="(note, idx) in notes">  -->
-            <!-- <component :is="note.type" :info="note.info" @setVal="setAns($event, idx)"></component> -->
+            <component :is="note.type" :info="note.info" @setVal="setAns($event, idx)"></component>
             <!-- <button v-on:click="selectBgColorNote" v-bind:style="{ color: color}" v-model="colorNote"> X<img src="img/color-icon.png" class="color-icon"></button> -->
              <!-- </div> -->
 
@@ -54,15 +54,7 @@ export default {
 
         },
 
-        // selectBgColorNote() {
-        //     this.isClick = !this.isClick
-        // },
 
-
-        selectNote(note) {
-            this.selectedNote = note;
-
-        },
 
     },
 
@@ -72,7 +64,7 @@ export default {
     },
     components: {
         noteService,
-        // noteImg,
+        noteImg,
         noteTodos,
         noteVideo,
         noteTxt,

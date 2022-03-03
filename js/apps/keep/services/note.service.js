@@ -92,7 +92,7 @@ function _createNotes() {
                 id: "n102",
                 type: "note-img",
                 info: {
-                    url: "http://some-img/me",
+                    url: "http://coding-academy.org/books-photos/20.jpg",
                     title: "Bobi and Me"
                 },
                 style: {
@@ -106,7 +106,11 @@ function _createNotes() {
                     label: "Get my stuff together",
                     todos: [
                         { txt: "Driving liscence", doneAt: null },
-                        { txt: "Coding power", doneAt: 187111111 }
+                        { txt: "Coding power", doneAt: 187111111 },
+                        { txt: " ", doneAt: null },
+                        { txt: " ", doneAt: 187111111 },
+                        { txt: " ", doneAt: null },
+                        { txt: " ", doneAt: 187111111 },
                     ]
                 }
             },
