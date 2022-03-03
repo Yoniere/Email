@@ -10,23 +10,16 @@ export default {
     template: `
         <section class="note-preview">
        
-
-        <p>note id: {{note.id}}</p>
-        <p>note type: {{note.type}}</p>
-            
        
-        <!-- <div>{{key}}</div> -->
+        <p>note type: {{note.type}}</p>
 
-        <!-- <select class="form-control" v-model="selectedNote" :required @change="selectNote">
-             <option>Choose Province</option>
-              <option v-for="(note, idx) in notes" v-bind:value="note.info" >{{ note.type }}</option>
-              <component :is="note.type"  :info="note.info" @setVal="setAns($event, idx)"></component>
-        </select> -->
-        <div v-for="(note, idx) in notes"> 
-            <component :is="note.type"  :info="note.info" @setVal="setAns($event, idx)"></component> 
-             </div>
-                
-                <pre>{{answers}}</pre>
+        <!-- <div v-for="(note, idx) in notes">  -->
+            <component :is="note.type" :info="note.info" @setVal="setAns($event, idx)"></component>
+             
+             <!-- </div> -->
+
+             <!-- <div>{{answers}}</div> -->
+                <!-- <pre>{{answers.info}}</pre> -->
               
                
         </section>
@@ -47,6 +40,7 @@ export default {
                 this.notes = notes
                 this.answers = new Array(this.notes.length)
             })
+        console.log('answers', this.answers);
     },
     methods: {
         setAns(ans, idx) {
@@ -83,3 +77,10 @@ export default {
     }
 }
 
+
+
+//  <select class="form-control" v-model="selectedNote" :required @change="selectNote">
+// <option>Choose Province</option>
+//  <option v-for="(note, idx) in notes" v-bind:value="note.info" >{{ note.type }}</option>
+//  <component :is="note.type"  :info="note.info" @setVal="setAns($event, idx)"></component>
+// </select> 
