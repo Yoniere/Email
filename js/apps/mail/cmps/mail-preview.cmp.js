@@ -5,6 +5,7 @@ export default {
         <article class="mail-preview">
             <div>{{email.sender}}</div>
             <div>{{email.subject}}</div>
+            <div>{{email.isRead}}</div>
         </article>
     `,
     data() {
@@ -16,6 +17,10 @@ export default {
     },
     methods: {
 
+
+    },
+
+    computed: {
 
     },
     components: {

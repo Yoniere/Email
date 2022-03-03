@@ -9,7 +9,7 @@ export default {
                 <li v-for="email in emails">
                     <mail-preview :email='email'></mail-preview>
                     <div ></div>
-                    <router-link @click="readStatus(email)" :to="'/mail/'+email.id">Read</router-link>
+                    <router-link @click="readStatus(email.id)" :to="'/mail/'+email.id">Read</router-link>
                 </li>
             </ul>
         </section>
@@ -22,9 +22,9 @@ export default {
 
     },
     methods: {
-        readStatus(email) {
-            // console.log(email)
-            this.$emit('readStatus', email)
+        readStatus(id) {
+            console.log(id)
+            this.$emit('readStatus', id)
         }
     },
     components: {
