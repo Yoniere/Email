@@ -16,7 +16,8 @@ export default {
                     <component :is="note.type"  :info="note.info" @setVal="setAns($event, idx)"></component>
                 </div>
                 <pre>{{answers}}</pre>
-
+           
+            </label>  
                
         </section>
     `,
