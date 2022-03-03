@@ -9,6 +9,7 @@ export const mailService = {
     get,
     remove,
     put,
+    post,
 }
 
 function query() {
@@ -27,6 +28,10 @@ function put(id) {
     return storageService.put(EMAILS_KEY, id);
 }
 
+function post(email) {
+    return storageService.post(EMAILS_KEY, email);
+}
+
 function _createEmails() {
     let emails = utilService.loadFromStorage(EMAILS_KEY);
     if (!emails || !emails.length) {
@@ -37,6 +42,8 @@ function _createEmails() {
                 isRead: false,
                 sentAt: Date.now(),
                 sender: 'momo@momo.com',
+                receiver: 'user@appsus.com',
+                type: 'inbox',
             },
             {
                 id: storageService.makeId(),
@@ -45,6 +52,8 @@ function _createEmails() {
                 isRead: false,
                 sentAt: Date.now() + 20000,
                 sender: 'momo@momo.com',
+                receiver: 'user@appsus.com',
+                type: 'inbox',
             },
             {
                 id: storageService.makeId(),
@@ -53,6 +62,8 @@ function _createEmails() {
                 isRead: false,
                 sentAt: Date.now() + 40000,
                 sender: 'momo@momo.com',
+                receiver: 'user@appsus.com',
+                type: 'inbox',
             }
         ]
         utilService.saveToStorage(EMAILS_KEY, emails)
