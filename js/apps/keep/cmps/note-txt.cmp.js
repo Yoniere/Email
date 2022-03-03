@@ -8,7 +8,7 @@ export default {
               <label>
                   <input type="text" v-model="val" @change="reportVal" :list="listId" />
                 </label>  
-           <p> {{val}}</p>    
+           <p>{{val}}</p>    
           </section>
           `,
     props: ["info"],

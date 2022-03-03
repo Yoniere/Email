@@ -1,77 +1,61 @@
 import { noteService } from '../services/note.service.js'
-import noteTxt from './note-txt.cmp.js'
-// import notePreview from './note-preview.cmp.js'
-// import { eventApp } from '../../../main-services/eventapp-service.js';
-// import noteTxt from './note-txt.cmp.js'
+import noteTxt from './note-txt.cmp.js';
+import noteTodos from './note-todos.cmp.js'
+import noteVideo from './note-video.cmp.js'
 
 export default {
-    props: ['note'],
+    // props: ['note'],
     template: `
     
         <section class="edit-note app-main">
+       
 
-        <!-- background-color: burlywood; -->
-            <div v-for="note.type"> 
-            <component :is="note.type"  :info="note.info" @setVal="setAns($event, idx)"></component> 
+            <div v-if='noteToEdit' > 
+            <component :is="noteToEdit.type" :info="noteToEdit.info"  @setVal="setAns($event, idx)"></component> 
              </div>
                     
-         
+     
             <hr />
            
-            <!-- <pre>{{noteToEdit}}</pre> -->
+        
         </section>
     `,
     data() {
         return {
-            // noteToEdit: noteService.getEmptyNote(),
             newEdit: [],
-            note: null,
-            noteId: null
+            noteToEdit:null,
+
         };
     },
+
     created() {
-        noteService.getByType()
+        const id = this.$route.params.noteId;
+        noteService.get(id)
             .then(note => {
-                this.note = note
-                this.newEdit = new Array(this.note.cmps.length)
-            })
+                this.noteToEdit = note
+            });
 
     },
     
     methods: {
-        // save() {
-        //     if (!this.noteToEdit.type.info) return;
-        //     noteService.save(this.noteToEdit)
-        //         .then(note => {
-        //             eventApp.emit('show-msg', { txt: 'Saved succesfully', type: 'success' })
-        //             this.$router.push('./note')
-        //         });
-        // },
-        save() {
-            console.log('Saving..');
+        hello() {
+            console.log(this.note)
         },
         setAns(ans, idx) {
-            console.log('Setting the answer: ', ans, 'idx:', idx);
-
-            this.noteToEdit.splice(idx, 1, ans)
+            console.log('Setting the answer: ', ans, 'idx:', idx);  
+            this.newEdit.splice(idx, 1, ans)
 
         },
-
     },
     computed: {
       
     
-
-        noteId() {
-            return this.$route.params.noteId
-        },
-        // fetchIdByNote(){
-
-        // }
     },
  
     components: {
         noteTxt,
+        noteTodos,
+        noteVideo
         // notePreview
     },
 };

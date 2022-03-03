@@ -5,13 +5,14 @@ const NOTES_KEY = 'notesDB';
 _createNotes()
 
 export const noteService = {
-    getByType,
+    // getByType,
     query,
     get,
     remove,
     save,
     removeNote,
-    getEmptyNote
+    getEmptyNote,
+    addNote
 }
 
 function getEmptyNote(type = '') {
@@ -21,12 +22,20 @@ function getEmptyNote(type = '') {
         info: []
     };
 }
-// function _createNote(type, title = 'keep') {
-//     const note = getEmptyCar(type, title)
-//     note.id = utilService.makeId()
-//     return note;
-// }
 
+function addNote(noteId, review) {
+    return get(noteId).then(note => {
+        review.id = utilService.makeId();
+        if (!Array.isArray(note.newNotes)) {
+            note.newNotes = [];
+            note.newNotes.push(review);
+        } else note.newNotes.push(review);
+        storageService.put(NOTE_KEY, note);
+        console.log(note)
+        return note
+    })
+
+}
 
 function query() {
     return storageService.query(NOTES_KEY);
@@ -46,6 +55,10 @@ function get(noteId) {
     return storageService.get(NOTES_KEY, noteId)
 
 }
+
+// function getByType() {
+//     return storageService.get(NOTES_KEY, noteId)
+// }
 
 function save(note) {
     if (note.id) return storageService.put(NOTES_KEY, note);
@@ -107,8 +120,9 @@ function _createNotes() {
     return notes
 }
 
+// function getColor() {
+//     let color = utilService.loadFromStorage(NOTES_KEY);
+
+// }
 
 
-function getByType() {
-    return Promise.resolve(notes);
-}

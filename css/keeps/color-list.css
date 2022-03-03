@@ -1,3 +1,14 @@
+.color-icon {
+  height: 20px;
+  width: 20px;
+}
+
+.change-color-model {
+  height: 70px;
+  width: 70px;
+  background-color: azure;
+}
+
 .yellow-note {
   background-color: rgb(209, 209, 54);
 }
