@@ -9,17 +9,14 @@ export default {
     // props: ['note'],
     template: `
     
-        <section class="add-note app-main">
+        <section  v-if="addNewNote" class="add-note app-main">
         <h4>{{formTitle}}</h4>
-        <form >
-            <!-- <div v-if=noteToEdit>  -->
-            <!-- <note-preview :note='note' /> -->
-            <component :is="noteToAdd.type" :info="noteToAdd.info" @setVal="updateNote"></component> 
-             <!-- </div> -->
-             <button class="add-btn" @click.prevent="addNote" >Add new Note</button>
-             <button @click="save">Save</button>
      
-     
+        <form @submit.prevent="save">
+                <!-- <div v-for="(info, idx) in notes.type"> -->
+                    <component :is="addNewNote.type"  :info="addNewNote.info" @setVal="updateNote"></component>
+                <!-- </div> -->
+                <button>add</button>
           </form>
         
         </section>
@@ -27,7 +24,7 @@ export default {
     data() {
         return {
             addNewNote:noteService.getEmptyNote(''),
-            noteToAdd:null,
+            notes:null,
 
         };
     },
@@ -36,14 +33,14 @@ export default {
 
     created() {
       
-        // const id = this.$route.params.noteId; 
+        const id = this.$route.params.noteId; 
        
             
-        //     noteService.get(id)
-        //     .then(note => {
-        //         this.addNewNote = note
-        //         console.log('created',this.addNewNote );
-        // })
+            noteService.get(id)
+            .then(note => {
+                this.addNewNote = note
+                console.log('created',this.addNewNote );
+        })
 
     },
     
@@ -66,8 +63,10 @@ export default {
         
         updateNote(val){
         console.log('val',val);
+        
             if (this.addNewNote.type === 'note-txt') {
                 this.addNewNote.info.txt = val;
+                console.log(' this.addNewNote123', this.addNewNote);
             }
             if (this.addNewNote.type === 'note-video') {
                 this.addNewNote.info.videos = val;

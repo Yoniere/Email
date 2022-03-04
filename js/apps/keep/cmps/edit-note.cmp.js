@@ -36,8 +36,8 @@ export default {
 
     created() {
       
-        const id = this.$route.params.noteId; 
-        if (id === this.$route.params.noteId) {
+      
+            const id = this.$route.params.noteId; 
             noteService.get(id)
             .then(note => {
                 this.noteToEdit = note
@@ -50,7 +50,7 @@ export default {
         //         this.addNewNote = note
         //         console.log('created',this.addNewNote );
         // })
-    }
+    
     },
     
     methods: {

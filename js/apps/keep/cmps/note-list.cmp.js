@@ -7,19 +7,16 @@ export default {
     template: `
             <section>
             <ul class="note-list">
-                <li v-for='note in notes'  class="note-preview-container" >
+                <li v-for='note in notes'  :key="note.id"  class="note-preview-container" >
             
-                   <note-preview :note='note' />
-                   
-                       <button @click="remove(note.id)">X</button>
-                       <!-- <button @click="select(note)">Details</button> -->
-                       <!-- <note-add :note='note' @addNotes="addNote" /> -->
-                       <router-link :note='note' :to="'/note/add/'+note.id" @addNotes="addNote">add</router-link>
-                       
-                       <!-- <router-link :note='note' :to="'/note/edit/'+note.id" @addNotes="addNote">Add</router-link> -->
-                       <router-link :note='note' :to="'/note/edit/'+note.id" >Edit</router-link>
-                       <!-- <button @click="select(notes)">Details</button> -->
-                
+                    
+                    <button @click="remove(note.id)">X</button>
+                    <router-link :note='note' :to="'/note/add/'+note.id" @addNotes="addNote">add</router-link>
+                    <!-- <router-link :note='note' :to="'/note/edit/'+note.id" @addNotes="addNote">Add</router-link> -->
+                    <router-link :note='note' :to="'/note/edit/'+note.id" >Edit</router-link>
+                    
+                    
+                    <note-preview :note='note' />
                 </li>
             </ul>
             </section>         

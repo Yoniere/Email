@@ -13,7 +13,8 @@ export const noteService = {
     removeNote,
     getEmptyNote,
     put,
-    addNote
+    addNote,
+    post
 }
 
 function getEmptyNote(noteType) {
@@ -55,6 +56,10 @@ function put(note) {
 
     return storageService.put(NOTES_KEY, note)
 
+}
+
+function post(note) {
+    return storageService.post(NOTES_KEY, note);
 }
 // function getByType() {
 //     return storageService.get(NOTES_KEY, noteId)
@@ -117,7 +122,31 @@ function _createNotes() {
                         { url: "https://dai.ly/x7n7y06", }
                     ]
                 }
-            }
+            },
+            {
+                id: "n105",
+                type: "note-txt",
+                isPinned: false,
+                info: {
+                    txt: "txt1!"
+                }
+            },
+            {
+                id: "n106",
+                type: "note-txt",
+                isPinned: false,
+                info: {
+                    txt: "txt2!"
+                }
+            },
+            {
+                id: "n107",
+                type: "note-txt",
+                isPinned: false,
+                info: {
+                    txt: "txt3!"
+                }
+            },
         ];
         utilService.saveToStorage(NOTES_KEY, notes)
     }

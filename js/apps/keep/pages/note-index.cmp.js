@@ -8,11 +8,13 @@ export default {
     template: `
         <section class="note-index app-main">
             
-            <note-list :notes='notesForDisplay' @remove="removeNote"  @selected="selectNote" ></note-list>
+            <note-list  @remove="removeNote" :notes="notesToShow" @selected="selectNote" ></note-list>
             <!-- <div class="actions"> -->
-            <note-filter @filtered="setFilter" />
+            <note-filter :notes='notes' @filtered="setFilter" v-if="!selectedNote"></note-filter>
+
+            <!-- <component :is="note" :info="note" @setVal="setAns($event, idx)"></component> -->
                           <!-- <select v-model="key" @change="setNoteType" class="form-control">
-                
+
                           <option v-for="(note, idx) in notes" v-bind:value="note.info" >{{ note.type }}</option>
                     </select> -->
         </section>
@@ -20,7 +22,8 @@ export default {
     data() {
         return {
             notes: null,
-            noteIndex: null,
+
+            answers: [],
             filterBy: null,
             selectedNote: null,
             key: null,
@@ -31,15 +34,20 @@ export default {
             .then(notes => this.notes = notes);
     },
     methods: {
+        setAns(ans, idx) {
+            console.log('Setting the answer: ', ans, 'idx:', idx);
+
+            this.answers.splice(idx, 1, ans)
+            console.log('ans', ans, idx);
+
+
+        },
         selectNote(note) {
             this.selectedNote = note;
 
         },
-        setNoteType() {
-
-            return this.key.txt
-
-
+        setFilter(filterBy) {
+            this.filterBy = filterBy;
         },
 
         removeNote(id) {
@@ -54,18 +62,21 @@ export default {
                     eventApp.emit('show-msg', { txt: 'Error - please try again later', type: 'error' });
                 });
         },
-        setFilter(filterBy) {
-            this.filterBy = filterBy;
-        }
+
+
     },
     computed: {
-        notesForDisplay() {
-            if (!this.filterBy) return this.notes;
-            const regex = new RegExp(this.filterBy.type, 'i');
-            return this.notes.filter(note => regex.test(note.type));
+        notesToShow() {
+            if (!this.filterBy) return this.notes
+            console.log('this.filterBy123', this.filterBy);
+            let filterdByType = this.notes;
+            if (this.filterBy.type) {
+                const regex = new RegExp(this.filterBy.type, 'i')
+                filterdByType = this.notes.filter((note) => regex.test(note.type))
+                console.log('filterdByType', filterdByType);
+            }
         }
     },
-
     components: {
         noteService,
         noteList,
