@@ -15,12 +15,13 @@ export default {
     props: ["info"],
     data() {
         return {
-            finds: []
+            newTodos: []
         };
     },
     methods: {
         reportVal() {
             this.$emit("setVal", this.val);
+            console.log('this.val', this.val);
         },
     },
     computed: {
