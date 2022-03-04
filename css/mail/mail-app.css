@@ -1,0 +1,57 @@
+    .filter-area {
+        justify-content: space-between;
+        height: 2.4rem;
+        border-bottom: 1px solid rgb(158, 156, 156);
+        padding: 0.2rem 1rem 0.2rem;
+    }
+    
+    .filter-area button {
+        height: 30px;
+        border-radius: 0.5rem;
+        margin-right: 3px;
+        background-color: rgb(255, 255, 255);
+        border: 0px;
+    }
+    
+    .filter-area input {
+        width: 300px;
+        border-radius: 0.5rem;
+        margin-right: 3px;
+        background-color: #f1f3f4;
+    }
+    
+    .filter-area-filters {
+        display: flex;
+        /* align-items: center; */
+        order: 10;
+    }
+    
+    .filter-area-filters button {
+        padding: 0px;
+        width: 32px;
+    }
+    
+    .filter-area-sort {
+        order: 0;
+    }
+    
+    .filter-area-unread {
+        order: 20;
+        display: flex;
+        align-items: center;
+    }
+    
+    .side-area {
+        border-right: 1px solid rgb(158, 156, 156);
+        padding: 0.2rem 0.2rem 0.2rem;
+        width: 10rem;
+    }
+    
+    .main-area {
+        padding: 0.2rem 1rem 0.2rem;
+    }
+    
+    .mail-area {
+        background-color: rgba(242, 245, 245, 0.8);
+        width: 94rem;
+    }

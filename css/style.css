@@ -23,3 +23,7 @@
 /* CMPS MAIL  */
 
 @import "./mail/mail-app.css";
+@import "./mail/mail-filter.css";
+@import "./mail/mail-filter-types.css";
+@import "./mail/mail-compose.css";
+@import "./mail/mail-preview.css";

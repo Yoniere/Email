@@ -2,11 +2,11 @@ export default {
     props: ['emails'],
 
     template: `
-            <section>
-                <div @click="filterByType('inbox')">Inbox</div>
-                <div @click="filterByType('sent')" >Sent</div>
-                <div @click="filterByType('draft')" >Draft</div>
-                <div @click="filterByType('trash')" >Trash</div>
+            <section class="filter-types-area">
+                <div class="flex" @click="filterByType('inbox')"><img src="../../img/inbox.svg"><span>Inbox</span></div>
+                <div class="flex" @click="filterByType('sent')" ><img src="../../img/sent.svg"><span>Sent</span></div>
+                <div class="flex" @click="filterByType('draft')" ><img src="../../img/draft.svg"><span>Draft</span></div>
+                <div class="flex" @click="filterByType('trash')" ><img src="../../img/trash.svg"><span>Trash</span></div>
             </section>
     `,
     data() {

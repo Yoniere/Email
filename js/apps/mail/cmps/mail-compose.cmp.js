@@ -3,13 +3,13 @@ export default {
 
     template: `
         <section>
-            <button @click="newEmailModal">Compose New Mail</button> 
+            <button class="new-email flex" @click="newEmailModal"><img src="../../img/new.svg">New Email</button> 
             <form v-if="this.isclicked" action="">
                 <button @click="newEmailModal">X</button>
                 <input v-model="newMail.receiver" type="text" placeholder="To">
                 <input v-model="newMail.subject" type="text" placeholder="Subject">
                 <textarea v-model="newMail.body" rows="4" cols="30"></textarea>
-                <button @click="sendEmail(this.newMail)">Send</button>
+                <button @click="sendEmail(this.newMail)"><img src="../../img/sent.svg"></button>
             </form>   
         </section>
     `,

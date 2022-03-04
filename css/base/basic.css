@@ -17,6 +17,7 @@ body {
 a {
     text-decoration: none;
     font-weight: bold;
+    cursor: pointer;
 }
 
 h1,
@@ -27,4 +28,8 @@ h5,
 h6,
 p {
     margin: 0;
+}
+
+button {
+    cursor: pointer;
 }

@@ -1,5 +1,4 @@
 import { mailService } from "./service/mail-service.cmps.js";
-import { eventApp } from "../../main-services/eventapp-service.js";
 import mailList from "./cmps/mail-list.cmp.js";
 import mailCompose from "./cmps/mail-compose.cmp.js";
 import mailFilter from "./cmps/mail-filter.cmp.js";
@@ -10,10 +9,12 @@ export default {
         <section class="mail-app app-main-layout">
 
             <section class="filter-area flex">
-                <mail-filter  @filtered='setfilterBy'></mail-filter>
+                <mail-filter class="filter-area-filters"  @filtered='setfilterBy'></mail-filter>
+                <div class="filter-area-sort flex">
                 <button @click="sortByTitle"> Sort By Subject</button>
                 <button @click="sortByDate" >Sort By Date</button>
-                <div>unread Emails: {{unreadEmailsCounter()}}</div>
+                </div>
+                <div class="filter-area-unread bold">unread Emails: {{unreadEmailsCounter()}}</div>
             </section>
             <section class="main-area flex">
                 <section class="side-area flex column">
