@@ -2,6 +2,7 @@
 
 @import "base/basic.css";
 @import "base/main.layout.css";
+@import "base/helpers.css";
 
 /* setup */
 
@@ -18,3 +19,7 @@
 @import "./keeps/note-list.css";
 @import "./keeps/color-list.css";
 @import "./keeps/edit.css";
+
+/* CMPS MAIL  */
+
+@import "./mail/mail-app.css";
