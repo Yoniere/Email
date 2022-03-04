@@ -9,18 +9,20 @@ export default {
     template: `
         <section class="mail-app app-main-layout">
 
-            <section>
+            <section class="filter-area flex">
                 <mail-filter  @filtered='setfilterBy'></mail-filter>
                 <button @click="sortByTitle"> Sort By Subject</button>
                 <button @click="sortByDate" >Sort By Date</button>
+                <div>unread Emails: {{unreadEmailsCounter()}}</div>
             </section>
-
-                <mail-compose :emails='emails' @sendEmail='addSentEmail' ></mail-compose>
-
-            <div>unread Emails: {{unreadEmailsCounter()}}</div>
-             <mail-types-list @filterByType='filterEmailsByType' :emails="emails"></mail-types-list>
-        <mail-list  :emails="emailsToShow()" :emails="emails" @readStatus='isRead'></mail-list>
-        </section>
+            <section class="main-area flex">
+                <section class="side-area flex column">
+                    <mail-compose :emails='emails' @sendEmail='addSentEmail' ></mail-compose>
+                    <mail-types-list @filterByType='filterEmailsByType' :emails="emails"></mail-types-list>
+                </section>
+                <mail-list class="mail-area flex column" :emails="emailsToShow()" :emails="emails" @readStatus='isRead'></mail-list>
+            </section>
+            </section>
     `,
     data() {
         return {

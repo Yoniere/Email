@@ -6,9 +6,8 @@ export default {
     template: `
         <section class="mail-list">
             <ul>
-                <li v-for="email in emails">
-                    <mail-preview :email='email'></mail-preview>
-                    <div ></div>
+                <li v-for="email in emails" class="flex justify-content">
+                    <mail-preview  :email='email'></mail-preview>
                     <router-link @click="readStatus(email.id)" :to="'/mail/'+email.id">Read</router-link>
                 </li>
             </ul>

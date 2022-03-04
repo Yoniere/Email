@@ -3,10 +3,10 @@ export default {
 
     template: `
             <section>
-                <button @click="filterByType('inbox')">Inbox</button>
-                <button @click="filterByType('sent')" >Sent</button>
-                <button @click="filterByType('draft')" >Draft</button>
-                <button @click="filterByType('trash')" >Trash</button>
+                <div @click="filterByType('inbox')">Inbox</div>
+                <div @click="filterByType('sent')" >Sent</div>
+                <div @click="filterByType('draft')" >Draft</div>
+                <div @click="filterByType('trash')" >Trash</div>
             </section>
     `,
     data() {

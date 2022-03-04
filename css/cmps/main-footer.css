@@ -1,4 +1,6 @@
 .app-footer {
-  background-color: rgba(146, 150, 150, 0.438);
-  height: 5vh;
+    background-color: rgba(211, 224, 224, 0.438);
+    height: 6vh;
+    align-items: center;
+    justify-content: center;
 }

@@ -1,4 +1,19 @@
 .app-header {
-  background-color: rgba(146, 150, 150, 0.438);
-  height: 5vh;
+    background-color: rgba(211, 224, 224, 0.438);
+    height: 8vh;
+    padding: 1rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    align-items: center;
+}
+
+.app-header a {
+    padding-left: 1rem;
+    font-size: 1.2rem;
+}
+
+.nav-bar-header {
+    align-items: center;
 }

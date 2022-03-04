@@ -1,14 +1,14 @@
 export default {
     template: `
-        <header class="app-header app-main-layout">
+        <header class="app-header app-main-layout flex justify-content">
            
-                <h3>main app</h3>
+                <div class="logo bold flex">Appsus</div>
 
-                <nav class="nav-bar-header">
-                <router-link to="/">Home</router-link> |
+                <nav class="nav-bar-header flex">
+                <router-link to="/">Home</router-link> 
                 <!-- <router-link to="/about">About</router-link>| -->
-                <router-link to="/note-index">Keep</router-link> |
-                <router-link to="/mail">Mail</router-link> |
+                <router-link to="/note-index">MissKeep</router-link> 
+                <router-link to="/mail">MisterEmail</router-link>
                
             </nav>
                

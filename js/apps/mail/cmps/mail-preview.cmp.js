@@ -2,7 +2,7 @@ export default {
     props: ['email'],
 
     template: `
-        <article class="mail-preview">
+        <article class="flex justify-content" class="mail-preview ">
             <div>{{email.sender}}</div>
             <div>{{email.subject}}</div>
             <div>{{email.isRead}}</div>
