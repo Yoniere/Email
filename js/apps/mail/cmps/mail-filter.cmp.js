@@ -26,7 +26,7 @@ export default {
         },
         setFilterByRead(TrueOrFalse) {
             this.filterBy.isRead = TrueOrFalse;
-            // console.log(this.filterBy.isRead)
+            console.log(this.filterBy.isRead)
             this.$emit('filtered', this.filterBy)
         }
 
