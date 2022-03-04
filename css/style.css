@@ -3,6 +3,10 @@
 @import "base/basic.css";
 @import "base/main.layout.css";
 
+/* setup */
+
+@import "setup/vars.css";
+
 /* CMPS */
 
 @import "cmps/main-header.css";
