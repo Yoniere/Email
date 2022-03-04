@@ -16,26 +16,19 @@ export const noteService = {
     addNote
 }
 
-function getEmptyNote(type = '') {
+function getEmptyNote(noteType) {
+    const emptyNote = {
+        isPinned: false,
+        info: {},
+        style: {
+            backgroundColor: null
+        }
+    }
 
-    return {
-        id: utilService.makeId(),
-        type,
-        info: []
-    };
 }
 
-function addNote(noteId, note) {
-    return get(noteId).then(note => {
-        note.id = utilService.makeId();
-        if (!Array.isArray(note.newNotes)) {
-            note.newNotes = [];
-            note.newNotes.push(note);
-        } else note.newNotes.push(note);
-        storageService.put(NOTE_KEY, note);
-        console.log(note)
-        return note
-    })
+function addNote(note) {
+    return storageService.post(NOTES_KEY, note)
 
 }
 

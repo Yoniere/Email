@@ -42,7 +42,7 @@ export default {
                 this.notes = notes
                 this.answers = new Array(this.notes.length)
             })
-        console.log('answers', this.answers);
+        // console.log('answers', this.answers);
     },
     methods: {
         setAns(ans, idx) {

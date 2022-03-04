@@ -54,12 +54,15 @@ export default {
                     eventApp.emit('show-msg', { txt: 'Error - please try again later', type: 'error' });
                 });
         },
+        setFilter(filterBy) {
+            this.filterBy = filterBy;
+        }
     },
     computed: {
         notesForDisplay() {
             if (!this.filterBy) return this.notes;
-            const regex = new RegExp(this.filterBy.vendor, 'i');
-            return this.notes.filter(note => regex.test(note.vendor));
+            const regex = new RegExp(this.filterBy.type, 'i');
+            return this.notes.filter(note => regex.test(note.type));
         }
     },
 

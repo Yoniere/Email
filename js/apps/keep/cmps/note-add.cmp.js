@@ -1,43 +1,102 @@
-import { noteService } from '../services/note.service.js'
-
+import { noteService } from '../services/note.service.js';
+// import { eventApp } from '../../../main-services/eventapp-service.js';
+import noteTxt from './note-txt.cmp.js';
+import noteTodos from './note-todos.cmp.js';
+import noteVideo from './note-video.cmp.js';
+import noteImg from './note-img.cmp.js';
+// import notePreview from './note-preview.cmp.js'
 export default {
+    // props: ['note'],
     template: `
     
-        <section class="note-add app-main">
-   
-       
-            
+        <section class="add-note app-main">
+        <h4>{{formTitle}}</h4>
+        <form >
+            <!-- <div v-if=noteToEdit>  -->
+            <!-- <note-preview :note='note' /> -->
+            <component :is="noteToAdd.type" :info="noteToAdd.info" @setVal="updateNote"></component> 
+             <!-- </div> -->
+             <button class="add-btn" @click.prevent="addNote" >Add new Note</button>
+             <button @click="save">Save</button>
+     
+     
+          </form>
+        
         </section>
     `,
     data() {
         return {
-            noteName: '',
-            notes: []
-        }
+            addNewNote:noteService.getEmptyNote(''),
+            noteToAdd:null,
+
+        };
     },
+
+   
+
     created() {
-
-        console.log("got here");
+      
+        // const id = this.$route.params.noteId; 
+       
+            
+        //     noteService.get(id)
+        //     .then(note => {
+        //         this.addNewNote = note
+        //         console.log('created',this.addNewNote );
+        // })
 
     },
+    
     methods: {
+        addNote() {
+                noteService.addNote(this.addNewNote)
+                    .then((note) => this.$emit('addNotes', note));
+            },
 
+        save() {
+            if (!this.addNewNote.type) return;
+            const id = this.$route.params.noteId; 
+          
+                noteService.put(this.addNewNote)
+            
+           },
 
-        addNote(note) {
-
-
-            noteService.query()
-                .then(updatedNotes => this.$emit('addedNote', updatedNotes));
-        }
-
-
+           
+        
+        
+        updateNote(val){
+        console.log('val',val);
+            if (this.addNewNote.type === 'note-txt') {
+                this.addNewNote.info.txt = val;
+            }
+            if (this.addNewNote.type === 'note-video') {
+                this.addNewNote.info.videos = val;
+            }
+            if (this.addNewNote.type === 'note-todos') {
+                this.addNewNote.info.todos = val;
+            }
+            if (this.addNewNote.type === 'note-img') {
+                this.addNewNote.info.url = val;
+            }
+        },
     },
-    mounted() {
-        this.$refs.input.focus()
+    computed: {
+        formTitle() {
+            const id = this.$route.params.noteId;
+            return id ? 'Edit note' : 'Add note';
+        },
+      
+        
+    
     },
-}
-
-
+ 
+    components: {
+        noteTxt,
+        noteTodos,
+        noteVideo,
+        noteImg
+    },
+};
 
 
 // import { noteService } from '../services/note.service.js'

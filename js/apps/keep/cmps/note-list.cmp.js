@@ -1,7 +1,7 @@
 import notePreview from './note-preview.cmp.js'
 import { noteService } from '../services/note.service.js'
 import noteEdit from './edit-note.cmp.js';
-
+import noteAdd from './note-add.cmp.js';
 export default {
     props: ['notes'],
     template: `
@@ -13,9 +13,11 @@ export default {
                    
                        <button @click="remove(note.id)">X</button>
                        <!-- <button @click="select(note)">Details</button> -->
+                       <!-- <note-add :note='note' @addNotes="addNote" /> -->
+                       <router-link :note='note' :to="'/note/add/'+note.id" @addNotes="addNote">add</router-link>
                        
-
-                       <router-link :note='note' :to="'/note/edit/'+note.id">Edit</router-link>
+                       <!-- <router-link :note='note' :to="'/note/edit/'+note.id" @addNotes="addNote">Add</router-link> -->
+                       <router-link :note='note' :to="'/note/edit/'+note.id" >Edit</router-link>
                        <!-- <button @click="select(notes)">Details</button> -->
                 
                 </li>
@@ -25,10 +27,13 @@ export default {
 
     data() {
         return {
-
+            notes: null
         }
     },
+    created() {
 
+        this.addNote()
+    },
     methods: {
         remove(id) {
             this.$emit('remove', id);
@@ -38,7 +43,10 @@ export default {
             this.$emit('selected', note);
         },
 
-
+        addNote() {
+            noteService.query()
+                .then(notes => this.notes = notes)
+        },
 
     },
     computed: {},
@@ -46,5 +54,6 @@ export default {
         notePreview,
         noteService,
         noteEdit,
+        noteAdd
     },
 }
