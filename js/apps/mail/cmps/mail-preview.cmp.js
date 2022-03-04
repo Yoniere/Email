@@ -2,7 +2,7 @@ export default {
     props: ['email'],
 
     template: `
-        <article class="mail-preview flex justify-content">
+        <article  class="mail-preview flex justify-content">
             <div class="email-sender">{{email.sender}}</div>
             <div class="email-subject">{{email.subject}}</div>
             <div class="email-body">{{bodyToDisplay}}</div>
@@ -20,12 +20,13 @@ export default {
     computed: {
 
         dateTodisplay() {
-            return new Date(this.email.sentAt)
+            return new Date(this.email.sentAt).toLocaleDateString('he')
         },
 
         bodyToDisplay() {
             return this.email.body.slice(0, 25);
-        }
+        },
+
     }
 
 };

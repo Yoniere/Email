@@ -10,7 +10,7 @@
 }
 
 .email-sender {
-    width: 8.5rem
+    width: 12rem
 }
 
 .email-subject {
@@ -19,4 +19,8 @@
 
 .email-body {
     width: 10rem;
+}
+
+.isRead {
+    background-color: aqua;
 }

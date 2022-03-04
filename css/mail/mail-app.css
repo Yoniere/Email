@@ -13,6 +13,10 @@
         border: 0px;
     }
     
+    .filter-area button:hover {
+        background-color: rgba(242, 245, 245, 0.8);
+    }
+    
     .filter-area input {
         width: 300px;
         border-radius: 0.5rem;
