@@ -1,7 +1,6 @@
-
 export default {
     template: `
-        <section class="home-page app-main">
+        <section class="home-page app-main-layout">
             
             <h3>Welcome to Appsus</h3>
           

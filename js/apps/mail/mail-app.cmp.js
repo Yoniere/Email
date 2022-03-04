@@ -7,13 +7,15 @@ import mailTypesList from "./cmps/mail-filtertypes-list.cmp.js";
 
 export default {
     template: `
-        <section class="mail-app app-main">
-            <mail-filter  @filtered='setfilterBy'></mail-filter>
+        <section class="mail-app app-main-layout">
 
-            <button @click="sortByTitle"> Sort By Subject</button>
-            <button @click="sortByDate" >Sort By Date</button>
+            <section>
+                <mail-filter  @filtered='setfilterBy'></mail-filter>
+                <button @click="sortByTitle"> Sort By Subject</button>
+                <button @click="sortByDate" >Sort By Date</button>
+            </section>
 
-            <mail-compose :emails='emails' @sendEmail='addSentEmail' ></mail-compose>
+                <mail-compose :emails='emails' @sendEmail='addSentEmail' ></mail-compose>
 
             <div>unread Emails: {{unreadEmailsCounter()}}</div>
              <mail-types-list @filterByType='filterEmailsByType' :emails="emails"></mail-types-list>

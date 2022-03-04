@@ -1,6 +1,6 @@
 export default {
     template: `
-        <header class="app-header app-main">
+        <header class="app-header app-main-layout">
            
                 <h3>main app</h3>
 
