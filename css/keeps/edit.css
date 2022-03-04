@@ -9,3 +9,8 @@
   align-content: flex-start;
   justify-content: space-evenly;
 }
+
+.note-filter {
+  background-color: lightslategray;
+  padding: 10px;
+}

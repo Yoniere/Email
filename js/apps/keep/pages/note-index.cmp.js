@@ -2,17 +2,20 @@ import noteList from '../cmps/note-list.cmp.js';
 import noteFilter from '../cmps/note-filter.cmp.js';
 import { eventApp } from '../../../main-services/eventapp-service.js';
 import { noteService } from '../services/note.service.js';
-
+import noteAdd from '../cmps/note-add.cmp.js';
 
 export default {
     template: `
         <section class="note-index app-main">
             
-            <note-list :notes='notesForDisplay' @remove="removeNote"  @selected="selectNote" ></note-list>
             <!-- <div class="actions"> -->
-            <note-filter @filtered="setFilter" />
+                <note-filter :notes='notes' @filtered="setFilter" v-if="!selectedNote"></note-filter>
+                 <router-link :notes='notes' :to="'/note/add/'"  @addedNotes="onAddNotes">add</router-link>
+                <!-- <note-add :notes='notes' v-if="isAdd" @addedNotes="onAddNotes" /> -->
+                <note-list :notes="notes" @remove="removeNote"  @selected="selectNote" ></note-list>
+            <!-- <component :is="note.type" :info="note.info" @setVal="setAns($event, idx)"></component> -->
                           <!-- <select v-model="key" @change="setNoteType" class="form-control">
-                
+
                           <option v-for="(note, idx) in notes" v-bind:value="note.info" >{{ note.type }}</option>
                     </select> -->
         </section>
@@ -20,7 +23,7 @@ export default {
     data() {
         return {
             notes: null,
-            noteIndex: null,
+            isAdd: null,
             filterBy: null,
             selectedNote: null,
             key: null,
@@ -35,11 +38,8 @@ export default {
             this.selectedNote = note;
 
         },
-        setNoteType() {
-
-            return this.key.txt
-
-
+        setFilter(filterBy) {
+            this.filterBy = filterBy;
         },
 
         removeNote(id) {
@@ -54,23 +54,30 @@ export default {
                     eventApp.emit('show-msg', { txt: 'Error - please try again later', type: 'error' });
                 });
         },
-        setFilter(filterBy) {
-            this.filterBy = filterBy;
-        }
+        onAddNotes(addNotes) {
+            this.notes = addNotes
+
+        },
+
     },
     computed: {
-        notesForDisplay() {
-            if (!this.filterBy) return this.notes;
-            const regex = new RegExp(this.filterBy.type, 'i');
-            return this.notes.filter(note => regex.test(note.type));
+        notesToShow() {
+            if (!this.filterBy) return this.notes
+            // console.log('this.filterBy123', this.filterBy);
+            let filterdByType = this.notes;
+            if (this.filterBy.type) {
+                const regex = new RegExp(this.filterBy.type, 'i')
+                filterdByType = this.notes.filter((note) => regex.test(note.type))
+                // console.log('filterdByType', filterdByType);
+            }
         }
     },
-
     components: {
         noteService,
         noteList,
         eventApp,
-        noteFilter
+        noteFilter,
+        noteAdd
     }
 };
 

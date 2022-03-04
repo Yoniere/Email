@@ -11,10 +11,16 @@ export default {
         <section class="note-preview">
        
        
+            <!-- <div v-for="(note, idx) in notes">  -->
+        <!-- <p>note type: note.type</p> -->
         <p>note type: {{note.type}}</p>
-        <p>note type: {{note.info}}</p>
-        <!-- <div v-for="(note, idx) in notes">  -->
-            <component :is="note.type" :info="note.info" @setVal="setAns($event, idx)"></component>
+        <p v-bind:id>note info: {{note.info.txt}}</p>
+        <p v-bind:id>note video: {{videos}}</p>
+        <p v-bind:id>note todos: {{todo}}</p>
+        <!-- <a v-bind:href="url"> ... </a> -->
+        <!-- <span v-html="note.info"></span></p> -->
+        <!-- <p>note type: {{note.info.txt}}</p> -->
+            <!-- <component :is="note.type" :info="note.info" @setVal="setAns($event, idx)"></component> -->
             <!-- <button v-on:click="selectBgColorNote" v-bind:style="{ color: color}" v-model="colorNote"> X<img src="img/color-icon.png" class="color-icon"></button> -->
              <!-- </div> -->
 
