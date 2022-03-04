@@ -10,8 +10,8 @@ export default {
         <section class="mail-app app-main">
             <mail-filter  @filtered='setfilterBy'></mail-filter>
 
-            <!-- <button @click="sortByTitle"> Sort By Subject</button> -->
-            <!-- <button>Sort By Date</button> -->
+            <button @click="sortByTitle"> Sort By Subject</button>
+            <button @click="sortByDate" >Sort By Date</button>
 
             <mail-compose :emails='emails' @sendEmail='addSentEmail' ></mail-compose>
 
@@ -25,9 +25,9 @@ export default {
             emails: [],
             filterBy: {
                 text: '',
-                isRead: '',
+                isRead: null,
                 type: '',
-                // emailForSort: '',
+                emailForSort: null,
             }
 
         }
@@ -88,18 +88,41 @@ export default {
 
         setfilterBy(filterBy) {
             this.filterBy = filterBy
-            console.log(this.filterBy)
+                // console.log(this.filterBy)
         },
         emailsToShow() {
-            if (!this.filterBy.text && !this.filterBy.isRead && !this.filterBy.type) return this.emails;
-            console.log(this.filterBy)
+            if (!this.filterBy.text && this.filterBy.isRead === null && !this.filterBy.type) return this.emails;
+            // console.log(this.filterBy)
             const regex = new RegExp(this.filterBy.text, 'i');
-            // if (this.filterBy.isRead === null) {
-            // console.log('hello')
-            // return this.emails.filter(email => regex.test(email.body || email.subject) && (email.type === this.filterBy.type))
-            // } else {
-            return this.emails.filter(email => regex.test(email.body || email.subject) && (email.isRead === this.filterBy.isRead) && (email.type === this.filterBy.type))
-                // }
+            if (!this.filterBy.type) {
+                if (this.filterBy.isRead === null) {
+                    return this.emails.filter(email => regex.test(email.body || email.subject))
+                } else if (!this.filterBy.text) {
+                    return this.emails.filter(email => (email.isRead === this.filterBy.isRead))
+                } else {
+                    return this.emails.filter(email => regex.test(email.body || email.subject) && (email.isRead === this.filterBy.isRead))
+                }
+            } else if (this.filterBy.isRead === null) {
+                if (!this.filterBy.type) {
+                    return this.emails.filter(email => regex.test(email.body || email.subject))
+                } else if (!this.filterBy.text) {
+                    return this.emails.filter(email => (email.type === this.filterBy.type))
+                } else {
+                    return this.emails.filter(email => regex.test(email.body || email.subject) && (email.type === this.filterBy.type))
+                }
+            } else if (!this.filterBy.text) {
+                if (!this.filterBy.type) {
+                    return this.emails.filter(email => (email.isRead === this.filterBy.isRead))
+                } else if (this.filterBy.isRead === null) {
+                    return this.emails.filter(email => (email.type === this.filterBy.type))
+                } else {
+                    return this.emails.filter(email => (email.isRead === this.filterBy.isRead) && (email.type === this.filterBy.type))
+                }
+            }
+
+
+            // return this.emails.filter(email => regex.test(email.body || email.subject) && (email.isRead === this.filterBy.isRead) && (email.type === this.filterBy.type))
+
         },
         filterEmailsByType(type) {
             this.filterBy.type = type
@@ -112,13 +135,19 @@ export default {
         //     console.log(this.filterBy.type)
         //     return this.emails.filter(email => email.type === this.filterBy.type)
         // }
-        // sortByTitle() {
-        //     this.emailForSort = this.emails.slice()
-        //     console.log(this.emailForSort)
-        //     this.emailForSort.subject.sort();
-        //     console.log(this.emailForSort);
-        //     console.log(this.emails)
-        // }
+        sortByTitle() {
+            this.emailForSort = this.emails.slice()
+            console.log(this.emailForSort)
+            this.emailForSort.sort((a, b) => (a.subject > b.subject) ? 1 : -1)
+            this.emails = this.emailForSort;
+        },
+
+        sortByDate() {
+            this.emailForSort = this.emails.slice()
+            console.log(this.emailForSort)
+            this.emailForSort.sort((a, b) => (a.sentAt - b.sentAt))
+            this.emails = this.emailForSort;
+        }
     },
     computed: {
 

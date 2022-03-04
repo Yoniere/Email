@@ -3,7 +3,7 @@ export default {
 
     template: `
         <section>
-            <button @submit.prevent @click="newEmailModal">Compose New Mail</button> 
+            <button @click="newEmailModal">Compose New Mail</button> 
             <form v-if="this.isclicked" action="">
                 <button @click="newEmailModal">X</button>
                 <input v-model="newMail.receiver" type="text" placeholder="To">
@@ -21,7 +21,7 @@ export default {
                 sender: 'user@appsus.com',
                 subject: null,
                 body: null,
-                isRead: false,
+                isRead: true,
                 sentAt: Date.now(),
                 type: 'sent',
             }
@@ -43,13 +43,15 @@ export default {
         sendEmail(newEmailDetails) {
             if (!this.newMail.subject || !this.newMail.receiver || !this.newMail.body) return;
             this.$emit('sendEmail', newEmailDetails)
+                // .then((sent) => this.isclicked = !this.isclicked)
                 // console.log(newEmailDetails)
             this.isclicked = !this.isclicked;
-            this.newMail = {
-                subject: null,
-                receiver: null,
-                body: null,
-            }
+            //   newEmailModal
+            // this.newMail = {
+            //     subject: null,
+            //     receiver: null,
+            //     body: null,
+            // }
         }
 
     },
