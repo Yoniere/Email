@@ -6,17 +6,17 @@ import noteVideo from './note-video.cmp.js';
 import noteImg from './note-img.cmp.js';
 // import notePreview from './note-preview.cmp.js'
 export default {
-    // props: ['note'],
+    // props: ['notes'],
     template: `
     
-        <section  v-if="addNewNote" class="add-note app-main">
+        <section class="add-note app-main">
         <h4>{{formTitle}}</h4>
      
         <form @submit.prevent="save">
                 <!-- <div v-for="(info, idx) in notes.type"> -->
-                    <component :is="addNewNote.type"  :info="addNewNote.info" @setVal="updateNote"></component>
+                    <component :is="addNewNote"  :info="addNewNote" @setVal="updateNote"></component>
                 <!-- </div> -->
-                <button>add</button>
+                <button @click="addedNote()">add</button>
           </form>
         
         </section>
@@ -45,9 +45,9 @@ export default {
     },
     
     methods: {
-        addNote() {
+        addedNote() {
                 noteService.addNote(this.addNewNote)
-                    .then((note) => this.$emit('addNotes', note));
+                    .then((note) => this.$emit('addedNotes', note));
             },
 
         save() {

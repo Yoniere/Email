@@ -102,13 +102,13 @@ function _createNotes() {
                 type: "note-todos",
                 info: {
                     label: "Get my stuff together",
-                    todos: [
+                    todo: [
                         { txt: "Driving liscence", doneAt: null },
                         { txt: "Coding power", doneAt: 187111111 },
-                        { txt: " ", doneAt: null },
-                        { txt: " ", doneAt: 187111111 },
-                        { txt: " ", doneAt: null },
-                        { txt: " ", doneAt: 187111111 },
+                        { txt: "", doneAt: null },
+                        { txt: "", doneAt: 187111111 },
+                        { txt: "", doneAt: null },
+                        { txt: "", doneAt: 187111111 },
                     ]
                 }
             },

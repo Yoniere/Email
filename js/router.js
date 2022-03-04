@@ -28,7 +28,7 @@ const routes = [{
     component: noteEdit
 },
 {
-    path: '/note/add/:noteId?',
+    path: '/note/add/',
     component: addNote
 },
 ];

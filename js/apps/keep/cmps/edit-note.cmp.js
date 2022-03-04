@@ -6,7 +6,7 @@ import noteVideo from './note-video.cmp.js';
 import noteImg from './note-img.cmp.js';
 // import notePreview from './note-preview.cmp.js'
 export default {
-    // props: ['note'],
+    props: ['note'],
     template: `
     
         <section class="edit-note app-main">
@@ -95,7 +95,14 @@ export default {
             return id ? 'Edit note' : 'Add note';
         },
       
-        
+        watch: {
+            carToEdit : {
+                handler() {
+                    console.log('Edited Car was changed');
+                },
+                deep: true
+            }
+        }
     
     },
  
