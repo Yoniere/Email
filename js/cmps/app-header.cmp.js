@@ -2,9 +2,9 @@ export default {
     template: `
         <header class="app-header app-main-layout flex justify-content">
            
-                <div class="logo bold">Appsus</div>
+                <div class="logo bold flex">Appsus</div>
 
-                <nav class="nav-bar-header">
+                <nav class="nav-bar-header flex">
                 <router-link to="/">Home</router-link> 
                 <!-- <router-link to="/about">About</router-link>| -->
                 <router-link to="/note-index">MissKeep</router-link> 

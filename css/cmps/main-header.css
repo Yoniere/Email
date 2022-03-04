@@ -5,9 +5,15 @@
 }
 
 .logo {
-    font-size: 1rem;
+    font-size: 1.5rem;
+    align-items: center;
 }
 
 .app-header a {
-    padding-left: 1rem
+    padding-left: 1rem;
+    font-size: 1.2rem;
+}
+
+.nav-bar-header {
+    align-items: center;
 }
