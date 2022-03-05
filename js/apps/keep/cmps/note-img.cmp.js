@@ -8,14 +8,15 @@ export default {
                 <div class="img-container">
                     <img :src="note.info.url"/>
                 </div>
-                <pre class="note-title" contenteditable v-text="note.info.title" @blur="updateTitle"/>
+                <pre class="note-title"  v-text="note.info.title" @change="updateTitle"/>
             </div>
-            <note-controls :note="note" @remove-note="removenote" @update-note="updatenote"/>
+            <note-controls :note="note" @remove-note="removeNote" @update-note="updateNote"/>
         </div>
     `,
     components: {
         noteControls,
     },
+
     methods: {
         removeNote(noteId) {
             this.$emit('remove-note', noteId)
@@ -27,9 +28,6 @@ export default {
             this.note.info.title = ev.target.innerText
             this.updateNote(this.note)
         },
-        togglePin() {
-            this.note.isPinned = !this.note.isPinned
-            this.updateNote(this.note);
-        },
+
     },
 }

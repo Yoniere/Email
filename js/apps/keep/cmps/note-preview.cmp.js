@@ -14,13 +14,24 @@ export default {
         <section class="note-preview">
        
       
-         
-        
-    <p>{{note.info.title}}</p> 
+    <div>
+        <p>{{note.type}}</p> 
+        <p>{{note.info.title}}</p> 
         <p v-bind:id>{{note.info.txt}}</p>
-        <p v-bind:id><img :src="imageToDisplay"></p>
-        <p v-bind:id>{{note.info.todo}}</p>
-       
+        <p v-bind:id><img :src="imageToDisplay" class="noteImg"></p>
+        <!-- <p v-bind:id>{{note.info.todos[txt]}}</p> -->
+    </div>  
+
+  
+    <div v-if="isColorPicker" class="colorPicker">
+
+    <div class="color-opt"
+    v-for="color in colors"
+    :style="{'background-color': color}"
+    @click.stop ="onColorChoice(color, note.id)">
+    </div>
+    </div>
+
         </section>
     `,
     // .change-color-model
@@ -30,8 +41,18 @@ export default {
             notes: null,
             selectedNote: null,
             answers: [],
-            // colorNote: '#673AB7',
+            BGC: 'rgba(255,255,255,0.3)',
             isClick: false,
+            isColorPicker: false,
+            colors: ['#3aa7c9',
+                '#30e447',
+                '#e48f30',
+                '#cb3707',
+                '#eaf09b',
+                'rgba(255, 255, 255, 0.316)'
+            ]
+
+
         }
 
     },
@@ -50,29 +71,28 @@ export default {
             this.answers.splice(idx, 1, ans)
             console.log('ans', ans, idx);
 
-
         },
 
 
 
-    },
 
-    computed: {
-        imageToDisplay() {
-            return this.note.info.url
+        computed: {
+            imageToDisplay() {
+                return this.note.info.url
+            }
+
+        },
+        components: {
+            noteService,
+            // noteImg,
+            // noteTodos,
+            // noteVideo,
+            noteTxt,
+            // noteFilter
+            newNoteTxt,
+            newNoteTodos,
+            newNoteImg,
         }
-
-    },
-    components: {
-        noteService,
-        // noteImg,
-        // noteTodos,
-        // noteVideo,
-        noteTxt,
-        // noteFilter
-        newNoteTxt,
-        newNoteTodos,
-        newNoteImg,
     }
 }
 

@@ -3,7 +3,7 @@ import noteFilter from '../cmps/note-filter.cmp.js';
 import { eventApp } from '../../../main-services/eventapp-service.js';
 import { noteService } from '../services/note.service.js';
 import noteAdd from '../cmps/note-add.cmp.js';
-import colorNote from '../cmps/note-color.cmp.js';
+
 
 export default {
     template: `
@@ -12,7 +12,7 @@ export default {
             
                 <!-- <note-filter :notes='notes' @filtered="setFilter" v-if="!selectedNote"></note-filter> -->
                 <note-add  @note-add="addNote"/>
-                <!-- <note-color :notes="notes"  @update-note="updateNote"/> -->
+             
                 <note-list :notes="notes" @remove-note="removeNote"  @selected="selectNote" @note-edit="updateNote"></note-list>
           
               
@@ -66,16 +66,16 @@ export default {
                 .then(note => this.notes.unshift(note))
         },
 
+
     },
     computed: {
         notesToShow() {
             if (!this.filterBy) return this.notes
-            // console.log('this.filterBy123', this.filterBy);
             let filterdByType = this.notes;
             if (this.filterBy.type) {
                 const regex = new RegExp(this.filterBy.type, 'i')
                 filterdByType = this.notes.filter((note) => regex.test(note.type))
-                // console.log('filterdByType', filterdByType);
+
             }
         }
     },
@@ -85,7 +85,7 @@ export default {
         eventApp,
         noteFilter,
         noteAdd,
-        colorNote
+        // colorNote
     }
 };
 
