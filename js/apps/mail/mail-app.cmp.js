@@ -21,7 +21,7 @@ export default {
                     <mail-compose :emails='emails' @sendEmail='addSentEmail' ></mail-compose>
                     <mail-types-list @filterByType='filterEmailsByType' :emails="emails"></mail-types-list>
                 </section>
-                <mail-list class="mail-area flex column" :emails="emailsToShow()" :emails="emails" @readStatus='isRead'></mail-list>
+                <mail-list class="mail-area flex column" :emails="emailsToShow()" :emails="emails" @isStared="getStarStatus" @readStatus='isRead'></mail-list>
             </section>
             </section>
     `,
@@ -137,6 +137,14 @@ export default {
         setResetFilters(filters) {
             this.filterBy = filters;
             this.filterBy.type = '';
+        },
+        getStarStatus(isStar) {
+            console.log(isStar)
+                // mailService.put(this.emails[idx])
+                // .then((email) =>
+                //     console.log(email)
+
+            // );
         }
     },
     computed: {

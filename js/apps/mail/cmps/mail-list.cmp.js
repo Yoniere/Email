@@ -8,7 +8,7 @@ export default {
             <ul>
                 <li v-for="email in emails" class="flex justify-content">
                 
-                    <mail-preview :class="isRead" :email='email'></mail-preview>
+                    <mail-preview @isStared="isStared" :class="isRead" :email='email'></mail-preview>
                     <router-link @click="readStatus(email.id)" :to="'/mail/'+email.id">Read</router-link>
                 
                 </li>
@@ -31,6 +31,10 @@ export default {
         },
         isRead() {
             return (!this.email.isRead) ? 'isRead' : ''
+        },
+        isStared(starStatus) {
+            console.log(starStatus)
+            this.$emit('isStared', starStatus)
         }
     },
     components: {

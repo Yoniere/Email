@@ -4,7 +4,7 @@ export default {
     template: `
         <article  class="mail-preview flex justify-content">
             <div class="email-readstatus"><img :src="isEmailReadToDisplay"></div>
-            <div @click=" class="star-status"><img :src="isStarToDisplay"></div>
+            <div @click="getStarClick" class="star-status"><img :src="isStarToDisplay">star</div>
             <div class="email-date">{{dateTodisplay}}</div>
             <div class="email-sender">{{email.sender}}</div>
             <div class="email-subject">{{email.subject}}</div>
@@ -14,6 +14,14 @@ export default {
     data() {
         return {
 
+            isstar: false
+
+        }
+    },
+    methods: {
+        getStarClick() {
+            this.email.isStar = !this.email.isStar
+            this.$emit('isStared', this.email)
         }
     },
     computed: {
@@ -28,8 +36,6 @@ export default {
         isEmailReadToDisplay() {
             return (this.email.isRead) ? '../../img/read.svg' : '../../img/unread.svg';
         }
-
-
     }
 
 };
