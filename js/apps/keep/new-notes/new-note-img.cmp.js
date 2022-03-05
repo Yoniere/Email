@@ -18,10 +18,12 @@ export default {
     },
     methods: {
         addNote() {
-            this.$emit('add-note', this.note);
+            console.log('this.note', this.note);
             this.note = this.makeNewImg();
+            this.$emit('add-note', this.note);
         },
         makeNewImg() {
+            // console.log('note', this.note);
             return {
                 id: utilService.makeId(),
                 type: 'note-img',

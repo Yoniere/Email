@@ -22,7 +22,7 @@ export const noteService = {
     getNoteById,
     updateNote,
     put,
-    addNote,
+    // addNote,
     post,
     getSongs,
     getNotes,
@@ -75,13 +75,14 @@ function updateNote(note) {
 }
 
 
-function addNote(note) {
+// function addNote(note) {
 
-    gNotes.unshift(note);
-    utilService.saveToStorage(NOTES_KEY, gNotes);
-    return Promise.resolve(gNotes);
+//     gNotes.unshift(note);
+//     utilService.saveToStorage(NOTES_KEY, gNotes);
+//     return Promise.resolve(gNotes);
 
-}
+// }
+
 function getNotes() {
     return JSON.parse(JSON.stringify(gNotes));
 }

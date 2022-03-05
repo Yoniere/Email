@@ -1,8 +1,6 @@
-import { noteService } from '../services/note.service.js';
-// import { eventApp } from '../../../main-services/eventapp-service.js';
+
 import noteTxt from '../new-notes/new-note-txt.cmp.js';
 import noteTodos from '../new-notes/new-note-todo.cmp.js';
-// import noteVideo from '../new-notes/new-note-video.cmp.js';
 import noteImg from '../new-notes/new-note-img.cmp.js';
 
 export default {
@@ -44,7 +42,7 @@ export default {
     computed: {
         noteTypeNote() {
             return {
-                'note-type': this.noteType === 'note-note',
+                'note-type': this.noteType === 'note-txt',
             }
         },
         noteTypeImg() {
@@ -66,6 +64,7 @@ export default {
     methods: {
 
         addNote(note) {
+
             this.$emit('note-add', note);
         },
 

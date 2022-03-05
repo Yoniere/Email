@@ -10,9 +10,9 @@ export default {
         <section class="note-index app-main">
             
             
-                <note-filter :notes='notes' @filtered="setFilter" v-if="!selectedNote"></note-filter>
+                <!-- <note-filter :notes='notes' @filtered="setFilter" v-if="!selectedNote"></note-filter> -->
                 <note-add  @note-add="addNote"/>
-                <note-color :notes="notes"  @update-note="updateNote"/>
+                <!-- <note-color :notes="notes"  @update-note="updateNote"/> -->
                 <note-list :notes="notes" @remove-note="removeNote"  @selected="selectNote" @note-edit="updateNote"></note-list>
           
               
@@ -21,10 +21,10 @@ export default {
     data() {
         return {
             notes: null,
-            // isAdd: null,
+
             filterBy: null,
             selectedNote: null,
-            key: null,
+
             isEdit: false
         }
     },
@@ -43,9 +43,9 @@ export default {
         setFilter(filterBy) {
             this.filterBy = filterBy;
         },
-        updateNote(id) {
-            this.$router.push(`/note/${id}`);
-            this.isEdit = true;
+        updateNote() {
+            noteService.updateNote(note)
+                .then(notes => this.notes = notes);
         },
 
         removeNote(id) {
@@ -61,8 +61,9 @@ export default {
                 });
         },
         addNote(note) {
-            noteService.addNote(note)
-                .then(notes => this.notes = notes)
+            console.log('note', note);
+            noteService.post(note)
+                .then(note => this.notes.unshift(note))
         },
 
     },
