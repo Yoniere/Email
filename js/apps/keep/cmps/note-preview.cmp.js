@@ -4,33 +4,23 @@ import { noteService } from '../services/note.service.js'
 import noteTxt from './note-txt.cmp.js'
 // import noteVideo from './note-video.cmp.js'
 // import noteFilter from './note-filter.cmp.js'
+import newNoteTxt from '../new-notes/new-note-txt.cmp.js';
+import newNoteTodos from '../new-notes/new-note-todo.cmp.js';
+import newNoteImg from '../new-notes/new-note-img.cmp.js';
 
 export default {
     props: ['note'],
     template: `
         <section class="note-preview">
        
+      
+         
+        
+    <p>{{note.info.title}}</p> 
+        <p v-bind:id>{{note.info.txt}}</p>
+        <p v-bind:id><img :src="imageToDisplay"></p>
+        <p v-bind:id>{{note.info.todo}}</p>
        
-            <!-- <div v-for="(note, idx) in notes">  -->
-        <!-- <p>note type: note.type</p> -->
-        <p>note type: {{note.type}}</p>
-        <p v-bind:id>note info: {{note.info.txt}}</p>
-        <p v-bind:id>note video: {{videos}}</p>
-        <!-- <component :is="note.type" :info="note.info"/> -->
-
-
-        <!-- <p v-bind:id>note todos: {{todo}}</p> -->
-        <!-- <a v-bind:href="url"> ... </a> -->
-        <!-- <span v-html="note.info"></span></p> -->
-        <!-- <p>note type: {{note.info.txt}}</p> -->
-            <!-- <component :is="note.type" :info="note.info" @setVal="setAns($event, idx)"></component> -->
-            <!-- <button v-on:click="selectBgColorNote" v-bind:style="{ color: color}" v-model="colorNote"> X<img src="img/color-icon.png" class="color-icon"></button> -->
-             <!-- </div> -->
-
-             <!-- <div>{{answers}}</div> -->
-                <!-- <pre>{{answers.info}}</pre> -->
-              
-               
         </section>
     `,
     // .change-color-model
@@ -68,7 +58,9 @@ export default {
     },
 
     computed: {
-
+        imageToDisplay() {
+            return this.note.info.url
+        }
 
     },
     components: {
@@ -78,10 +70,27 @@ export default {
         // noteVideo,
         noteTxt,
         // noteFilter
-
-
+        newNoteTxt,
+        newNoteTodos,
+        newNoteImg,
     }
 }
 
+// <!-- <div v-for="(note, idx) in notes">  -->
+// <!-- <p>note type: note.type</p> -->
 
+
+// <!-- <component :is="note.type" :info="note.info"/> -->
+
+
+// <!-- <p v-bind:id>note todos: {{todo}}</p> -->
+// <!-- <a v-bind:href="url"> ... </a> -->
+// <!-- <span v-html="note.info"></span></p> -->
+// <!-- <p>note type: {{note.info.txt}}</p> -->
+//     <!-- <component :is="note.type" :info="note.info" @setVal="setAns($event, idx)"></component> -->
+//     <!-- <button v-on:click="selectBgColorNote" v-bind:style="{ color: color}" v-model="colorNote"> X<img src="img/color-icon.png" class="color-icon"></button> -->
+//      <!-- </div> -->
+
+//      <!-- <div>{{answers}}</div> -->
+//         <!-- <pre>{{answers.info}}</pre> -->
 
