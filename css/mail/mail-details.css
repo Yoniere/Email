@@ -1,0 +1,17 @@
+.mail-details img {
+    cursor: pointer;
+    margin-top: 15px;
+    margin-left: 10px
+}
+
+.mail-details {
+    padding: 0.2rem 1rem 0.2rem;
+}
+
+.mail-details-sender {
+    font-size: 1rem;
+}
+
+.mail-details-subject {
+    margin-top: 15px;
+}

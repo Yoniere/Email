@@ -1,0 +1,18 @@
+.filter-types-area {}
+
+.filter-types-area div {
+    height: 32px;
+    align-items: center;
+    cursor: pointer;
+    /* margin-left: 16px; */
+}
+
+.filter-types-area div:hover {
+    background-color: rgba(242, 245, 245, 0.8);
+    ;
+    border-radius: 0.75rem;
+}
+
+.filter-types-area div img {
+    margin-right: 6px;
+}

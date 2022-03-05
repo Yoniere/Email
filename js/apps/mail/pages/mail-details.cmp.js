@@ -4,12 +4,15 @@ export default {
 
 
     template: `
-        <section v-if="email" class="mail-list">
+        <section v-if="email" class="mail-details app-main-layout">
 
-                   <h1>{{email.sender}}</h1> 
-                   <h1>{{email.subject}}</h1> 
+                   <h2 class="mail-details-sender">{{email.sender}}</h2> 
+                   <h1 class="mail-details-subject">{{email.subject}}</h1> 
                    <p>{{email.body}}</p> 
-                   <div @click="onRemove(email.id)">delete</div> 
+                   <div class="flex">
+                       <router-link to="/mail"><img src="../../img/back.svg"></router-link>
+                   <div @click="onRemove(email.id)"><img src="../../img/trash.svg"></div> 
+                   </div>
         </section>
         <section v-else=''></section>
     `,

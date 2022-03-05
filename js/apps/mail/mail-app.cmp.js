@@ -1,5 +1,4 @@
 import { mailService } from "./service/mail-service.cmps.js";
-import { eventApp } from "../../main-services/eventapp-service.js";
 import mailList from "./cmps/mail-list.cmp.js";
 import mailCompose from "./cmps/mail-compose.cmp.js";
 import mailFilter from "./cmps/mail-filter.cmp.js";
@@ -10,10 +9,12 @@ export default {
         <section class="mail-app app-main-layout">
 
             <section class="filter-area flex">
-                <mail-filter  @filtered='setfilterBy'></mail-filter>
-                <button @click="sortByTitle"> Sort By Subject</button>
-                <button @click="sortByDate" >Sort By Date</button>
-                <div>unread Emails: {{unreadEmailsCounter()}}</div>
+                <mail-filter class="filter-area-filters" @clearAllFilters="setResetFilters" @filtered='setfilterBy'></mail-filter>
+                <div class="filter-area-sort flex">
+                <button @click="sortByTitle"><img src="../../img/sort-by-name.svg"></button>
+                <button @click="sortByDate"><img src="../../img/sort-by-date.svg"></button>
+                </div>
+                <div class="filter-area-unread bold"><img src="../../img/unread.svg">{{unreadEmailsCounter()}}</div>
             </section>
             <section class="main-area flex">
                 <section class="side-area flex column">
@@ -49,31 +50,19 @@ export default {
             console.log(emailId)
             const idx = this.emails.findIndex(email =>
                 email.id === emailId
-                // console.log(email.id)
+
             )
             console.log(idx)
-                // console.log(this.emails)
+
 
             this.emails[idx].isRead = true;
             console.log(this.emails[idx].isRead);
             mailService.put(this.emails[idx])
                 .then((email) =>
                     console.log(email)
-                    // console.log(this.emails)
-                    // const idx = this.emails.findIndex((e) => {
-                    //     e.id === email.id
-                    //     console.log(email)
+
                 );
-            // this.emails.splice(idx, 1, this.email);
-            // showSuccessMsg('updated');
-            // console.log(id)
-            //     console.log(this.emails)
-            // })
-            // .catch(err => {
-            // console.error(err);
-            // showErrorMsg('Error - please try again later')
-            // });
-            // }
+
         },
         unreadEmailsCounter() {
             var unreadCounter = 0;
@@ -81,7 +70,6 @@ export default {
                 if (!this.emails[i].isRead)
                     unreadCounter++;
             }
-            // console.log(unreadCounter)
             return unreadCounter
         },
         addSentEmail(sentEmail) {
@@ -92,7 +80,6 @@ export default {
 
         setfilterBy(filterBy) {
             this.filterBy = filterBy
-                // console.log(this.filterBy)
         },
         emailsToShow() {
             if (!this.filterBy.text && this.filterBy.isRead === null && !this.filterBy.type) return this.emails;
@@ -131,14 +118,9 @@ export default {
         filterEmailsByType(type) {
             this.filterBy.type = type
             console.log(this.filterBy)
-                // return this.emails.filter(email => email.type === type)
+
         },
 
-        // emailsTypeToShow() {
-        //     if (!this.filterBy.type);
-        //     console.log(this.filterBy.type)
-        //     return this.emails.filter(email => email.type === this.filterBy.type)
-        // }
         sortByTitle() {
             this.emailForSort = this.emails.slice()
             console.log(this.emailForSort)
@@ -147,10 +129,14 @@ export default {
         },
 
         sortByDate() {
-            this.emailForSort = this.emails.slice()
-            console.log(this.emailForSort)
-            this.emailForSort.sort((a, b) => (a.sentAt - b.sentAt))
-            this.emails = this.emailForSort;
+            // this.emailForSort = this.emails.slice()
+            // console.log(this.emailForSort)
+            return this.emails.sort((a, b) => (a.sentAt - b.sentAt))
+                // this.emails = this.emailForSort;
+        },
+        setResetFilters(filters) {
+            this.filterBy = filters;
+            this.filterBy.type = '';
         }
     },
     computed: {

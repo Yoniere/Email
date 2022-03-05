@@ -7,14 +7,18 @@ export default {
         <section class="mail-list">
             <ul>
                 <li v-for="email in emails" class="flex justify-content">
-                    <mail-preview  :email='email'></mail-preview>
+                
+                    <mail-preview :class="isRead" :email='email'></mail-preview>
                     <router-link @click="readStatus(email.id)" :to="'/mail/'+email.id">Read</router-link>
+                
                 </li>
             </ul>
         </section>
     `,
     data() {
-        return {}
+        return {
+
+        }
     },
     created() {
 
@@ -22,11 +26,17 @@ export default {
     },
     methods: {
         readStatus(id) {
-            console.log(id)
+            // console.log(id)
             this.$emit('readStatus', id)
+        },
+        isRead() {
+            return (!this.email.isRead) ? 'isRead' : ''
         }
     },
     components: {
         mailPreview
+    },
+    computed: {
+
     }
 }

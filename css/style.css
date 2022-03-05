@@ -8,19 +8,24 @@
 
 @import "setup/vars.css";
 
-/* CMPS */
+/* cmps */
 
 @import "cmps/main-header.css";
 @import "cmps/main-footer.css";
 @import "cmps/home-page.css";
 
-/* CMPS KEEPS */
+/* cmps KEEPS */
 
 @import "./keeps/main-app-note.css";
 @import "./keeps/note-list.css";
 @import "./keeps/color-list.css";
 @import "./keeps/edit.css";
 
-/* CMPS MAIL  */
+/* cmps MAIL  */
 
 @import "./mail/mail-app.css";
+@import "./mail/mail-filter.css";
+@import "./mail/mail-filter-types.css";
+@import "./mail/mail-compose.css";
+@import "./mail/mail-preview.css";
+@import "./mail/mail-details.css";
