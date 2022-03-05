@@ -9,7 +9,7 @@ export default {
                 <li v-for="email in emails" class="flex justify-content">
                 
                     <mail-preview @isStared="isStared" :class="isRead" :email='email'></mail-preview>
-                    <router-link @click="readStatus(email.id)" :to="'/mail/'+email.id">Read</router-link>
+                    <router-link class="read-btn" @click="readStatus(email.id)" :to="'/mail/'+email.id">Read</router-link>
                 
                 </li>
             </ul>
