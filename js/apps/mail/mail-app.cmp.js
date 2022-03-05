@@ -18,7 +18,7 @@ export default {
             </section>
             <section class="main-area flex">
                 <section class="side-area flex column">
-                    <mail-compose :emails='emails' @sendEmail='addSentEmail' ></mail-compose>
+                    <mail-compose class="compose-new-mail" :emails='emails' @sendEmail='addSentEmail' ></mail-compose>
                     <mail-types-list @filterByType='filterEmailsByType' :emails="emails"></mail-types-list>
                 </section>
                 <mail-list class="mail-area flex column" :emails="emailsToShow()" :emails="emails" @isStared="getStarStatus" @readStatus='isRead'></mail-list>

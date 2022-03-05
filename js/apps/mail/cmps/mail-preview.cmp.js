@@ -3,13 +3,16 @@ export default {
 
     template: `
         <article  class="mail-preview flex justify-content">
+            <div class="additonals-display flex">
             <div @click="getReadClick" class="email-readstatus"><img :src="isEmailReadToDisplay"></div>
             <div @click="getStarClick" class="star-status"><img :src="isEmailStarToDisplay"></div>
-            <!-- <div @click="getReadClick" class="read-status"><img :src="isEmailReadToDisplay"></div> -->
             <div class="email-date">{{dateTodisplay}}</div>
+            </div>
+            <div class="text-display flex">
             <div class="email-sender">{{email.sender}}</div>
             <div class="email-subject">{{email.subject}}</div>
             <div class="email-body">{{bodyToDisplay}}</div>
+            </div>
         </article>
     `,
     data() {
