@@ -4,33 +4,34 @@ import { noteService } from '../services/note.service.js'
 import noteTxt from './note-txt.cmp.js'
 // import noteVideo from './note-video.cmp.js'
 // import noteFilter from './note-filter.cmp.js'
+import newNoteTxt from '../new-notes/new-note-txt.cmp.js';
+import newNoteTodos from '../new-notes/new-note-todo.cmp.js';
+import newNoteImg from '../new-notes/new-note-img.cmp.js';
 
 export default {
     props: ['note'],
     template: `
         <section class="note-preview">
        
-       
-            <!-- <div v-for="(note, idx) in notes">  -->
-        <!-- <p>note type: note.type</p> -->
-        <p>note type: {{note.type}}</p>
-        <p v-bind:id>note info: {{note.info.txt}}</p>
-        <p v-bind:id>note video: {{videos}}</p>
-        <!-- <component :is="note.type" :info="note.info"/> -->
+      
+    <div>
+        <p>{{note.type}}</p> 
+        <p>{{note.info.title}}</p> 
+        <p v-bind:id>{{note.info.txt}}</p>
+        <p v-bind:id><img :src="imageToDisplay" class="noteImg"></p>
+        <!-- <p v-bind:id>{{note.info.todos[txt]}}</p> -->
+    </div>  
 
+  
+    <div v-if="isColorPicker" class="colorPicker">
 
-        <!-- <p v-bind:id>note todos: {{todo}}</p> -->
-        <!-- <a v-bind:href="url"> ... </a> -->
-        <!-- <span v-html="note.info"></span></p> -->
-        <!-- <p>note type: {{note.info.txt}}</p> -->
-            <!-- <component :is="note.type" :info="note.info" @setVal="setAns($event, idx)"></component> -->
-            <!-- <button v-on:click="selectBgColorNote" v-bind:style="{ color: color}" v-model="colorNote"> X<img src="img/color-icon.png" class="color-icon"></button> -->
-             <!-- </div> -->
+    <div class="color-opt"
+    v-for="color in colors"
+    :style="{'background-color': color}"
+    @click.stop ="onColorChoice(color, note.id)">
+    </div>
+    </div>
 
-             <!-- <div>{{answers}}</div> -->
-                <!-- <pre>{{answers.info}}</pre> -->
-              
-               
         </section>
     `,
     // .change-color-model
@@ -40,8 +41,18 @@ export default {
             notes: null,
             selectedNote: null,
             answers: [],
-            // colorNote: '#673AB7',
+            BGC: 'rgba(255,255,255,0.3)',
             isClick: false,
+            isColorPicker: false,
+            colors: ['#3aa7c9',
+                '#30e447',
+                '#e48f30',
+                '#cb3707',
+                '#eaf09b',
+                'rgba(255, 255, 255, 0.316)'
+            ]
+
+
         }
 
     },
@@ -60,28 +71,46 @@ export default {
             this.answers.splice(idx, 1, ans)
             console.log('ans', ans, idx);
 
-
         },
 
 
 
-    },
 
-    computed: {
+        computed: {
+            imageToDisplay() {
+                return this.note.info.url
+            }
 
-
-    },
-    components: {
-        noteService,
-        // noteImg,
-        // noteTodos,
-        // noteVideo,
-        noteTxt,
-        // noteFilter
-
-
+        },
+        components: {
+            noteService,
+            // noteImg,
+            // noteTodos,
+            // noteVideo,
+            noteTxt,
+            // noteFilter
+            newNoteTxt,
+            newNoteTodos,
+            newNoteImg,
+        }
     }
 }
 
+// <!-- <div v-for="(note, idx) in notes">  -->
+// <!-- <p>note type: note.type</p> -->
 
+
+// <!-- <component :is="note.type" :info="note.info"/> -->
+
+
+// <!-- <p v-bind:id>note todos: {{todo}}</p> -->
+// <!-- <a v-bind:href="url"> ... </a> -->
+// <!-- <span v-html="note.info"></span></p> -->
+// <!-- <p>note type: {{note.info.txt}}</p> -->
+//     <!-- <component :is="note.type" :info="note.info" @setVal="setAns($event, idx)"></component> -->
+//     <!-- <button v-on:click="selectBgColorNote" v-bind:style="{ color: color}" v-model="colorNote"> X<img src="img/color-icon.png" class="color-icon"></button> -->
+//      <!-- </div> -->
+
+//      <!-- <div>{{answers}}</div> -->
+//         <!-- <pre>{{answers.info}}</pre> -->
 

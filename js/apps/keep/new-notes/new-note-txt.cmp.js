@@ -19,7 +19,7 @@ export default {
         addNote() {
             this.$emit('add-note', this.note);
             this.note = this.makeNewNote()
-            console.log('  this.note ', this.note);
+
         },
         makeNewNote() {
             return {

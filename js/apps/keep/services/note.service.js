@@ -22,7 +22,6 @@ export const noteService = {
     getNoteById,
     updateNote,
     put,
-    addNote,
     post,
     getSongs,
     getNotes,
@@ -75,13 +74,7 @@ function updateNote(note) {
 }
 
 
-function addNote(note) {
 
-    gNotes.unshift(note);
-    utilService.saveToStorage(NOTES_KEY, gNotes);
-    return Promise.resolve(gNotes);
-
-}
 function getNotes() {
     return JSON.parse(JSON.stringify(gNotes));
 }
@@ -160,9 +153,9 @@ function _createNotes() {
                 type: "note-todos",
                 info: {
                     label: "Get my stuff together",
-                    todo: [
-                        { id: 'ld3F67', txt: "Driving liscence", doneAt: null },
-                        { id: 's6EE4g', txt: "Coding power", doneAt: 187111111 },
+                    todos: [
+                        { id: 'ld3F323', txt: "Driving liscence", doneAt: null },
+                        { id: '32323ew', txt: "Coding power", doneAt: 187111111 },
 
                     ],
                 },
@@ -171,21 +164,21 @@ function _createNotes() {
                     backgroundColor: "#00d"
                 }
             },
-            {
-                id: "n104",
-                type: "note-video",
-                info: {
-                    label: "Get my stuff together",
-                    videos: [
-                        { url: "https://www.youtube.com/watch?v=s4ObxcdXoFE", },
-                        { url: "https://dai.ly/x7n7y06", }
-                    ]
-                },
-                style: {
-                    title: 'your video:',
-                    backgroundColor: "#ffffff"
-                }
-            },
+            // {
+            //     id: "n104",
+            //     type: "note-video",
+            //     info: {
+            //         label: "Get my stuff together",
+            //         videos: [
+            //             { url: "https://www.youtube.com/watch?v=s4ObxcdXoFE", },
+            //             { url: "https://dai.ly/x7n7y06", }
+            //         ]
+            //     },
+            //     style: {
+            //         title: 'your video:',
+            //         backgroundColor: "#ffffff"
+            //     }
+
 
 
         ];
