@@ -16,11 +16,12 @@
 }
 
 .note-add {
+  /* margin-top: 20px; */
   width: 500px;
-  margin: 0 0px 20px 3px;
+  margin: 30px 0px 20px 3px;
   padding: 10px;
   position: relative;
-  transition: 150ms ease-in-out;
+  /* transition: 150ms ease-in-out; */
   border-radius: 0.5rem;
   border: 1px solid rgba(192, 192, 192, 0.918);
 }
@@ -29,7 +30,7 @@
   fill: rgb(97, 97, 97);
   width: 30px;
   cursor: pointer;
-  transition: 200ms ease-in-out;
+
   border-radius: 20%;
   padding: 0.2rem;
 }
