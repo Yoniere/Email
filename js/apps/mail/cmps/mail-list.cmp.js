@@ -33,7 +33,7 @@ export default {
             return (!this.email.isRead) ? 'isRead' : ''
         },
         isStared(starStatus) {
-            console.log(starStatus)
+            // console.log(starStatus)
             this.$emit('isStared', starStatus)
         }
     },
