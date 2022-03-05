@@ -19,28 +19,6 @@ export default {
 
 
 
-
-            <!-- <component v-for="note in notes"
-                       
-                        :is="note.type"
-                        :key="note.id"
-                        :style="note.style"
-                        :note="note"
-                        @remove-note="remove">
-                        
-            </component> -->
-           
-           
-<!-- <div v-for="(note, idx) in notes" @click.stop="onSelectNote(note,idx)">
-                           <component :is="note.type" :info="note.info" :idx="idx" :id="note.id"></component>
-</div> -->
-
-                       <!-- <button @click="select(note)">Details</button> -->
-                       <!-- <note-add :note='note' @addNotes="addNote" /> -->
-                       <!-- <router-link :note='note' :to="'/note/add/'+note.id" @addNotes="addNote">add</router-link> -->
-                       
-                       <!-- <router-link :note='note' :to="'/note/edit/'+note.id" @addNotes="addNote">Add</router-link> -->
-                       <!-- <button @click="select(notes)">Details</button> -->
                 
                 </li>
             </ul>

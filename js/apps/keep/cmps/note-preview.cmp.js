@@ -85,8 +85,3 @@ export default {
 
 
 
-//  <select class="form-control" v-model="selectedNote" :required @change="selectNote">
-// <option>Choose Province</option>
-//  <option v-for="(note, idx) in notes" v-bind:value="note.info" >{{ note.type }}</option>
-//  <component :is="note.type"  :info="note.info" @setVal="setAns($event, idx)"></component>
-// </select> 

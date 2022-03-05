@@ -1,5 +1,5 @@
 import { noteService } from '../services/note.service.js';
-import { eventApp } from '../../../main-services/eventapp-service.js';
+// import { eventApp } from '../../../main-services/eventapp-service.js';
 import noteTxt from './note-txt.cmp.js';
 import noteTodos from './note-todos.cmp.js';
 // import noteVideo from './note-video.cmp.js';
@@ -42,52 +42,52 @@ export default {
     data() {
         return {
             // addNewNote:noteService.getEmptyNote(''),
-            noteToEdit:null,
+            noteToEdit: null,
 
         };
     },
 
 
     created() {
-      
-        const id = this.$route.params.noteId; 
+
+        const id = this.$route.params.noteId;
         if (id === this.$route.params.noteId) {
             noteService.get(id)
-            .then(note => {
-                this.noteToEdit = note
-                console.log('created',this.noteToEdit );
-            });
-        }else{
-             id = this.$route.params.noteId;
+                .then(note => {
+                    this.noteToEdit = note
+                    console.log('created', this.noteToEdit);
+                });
+        } else {
+            id = this.$route.params.noteId;
             noteService.get(id)
-            .then(note => {
-                this.addNewNote = note
-                console.log('created',this.addNewNote );
-        })
-    }
+                .then(note => {
+                    this.addNewNote = note
+                    console.log('created', this.addNewNote);
+                })
+        }
     },
-    
+
     methods: {
         addNote() {
-                noteService.addNote(this.addNewNote)
-                    .then((note) => this.$emit('addNotes', note));
-            },
+            noteService.addNote(this.addNewNote)
+                .then((note) => this.$emit('addNotes', note));
+        },
 
         save() {
             if (!this.noteToEdit.type) return;
-            const id = this.$route.params.noteId; 
-            if (id === this.$route.params.noteId){
-                console.log('id',id);
-            noteService.put(this.noteToEdit)
-            }else{
+            const id = this.$route.params.noteId;
+            if (id === this.$route.params.noteId) {
+                console.log('id', id);
+                noteService.put(this.noteToEdit)
+            } else {
                 noteService.put(this.addNewNote)
             }
-           },
+        },
 
-           
-    
-        updateNote(val){
-        console.log('val',val);
+
+
+        updateNote(val) {
+            console.log('val', val);
             if (this.noteToEdit.type === 'note-txt') {
                 this.noteToEdit.info.txt = val;
                 this.noteToEdit.info.title = val;
@@ -97,7 +97,7 @@ export default {
             }
             if (this.noteToEdit.type === 'note-todos') {
                 this.noteToEdit.info.todos = val;
-                console.log('  this.noteToEdit.info.todos',  this.noteToEdit.info.todos);
+                console.log('  this.noteToEdit.info.todos', this.noteToEdit.info.todos);
             }
             if (this.noteToEdit.type === 'note-img') {
                 this.noteToEdit.info.url = val;
@@ -109,11 +109,11 @@ export default {
             const id = this.$route.params.noteId;
             return id ? 'Edit note' : 'Add note';
         },
-      
-        
-    
+
+
+
     },
- 
+
     components: {
         noteTxt,
         noteService,
@@ -122,333 +122,3 @@ export default {
         // noteImg
     },
 };
-
-// import { noteService } from '../services/note.service.js'
-// import noteTxt from './note-txt.cmp.js'
-// import { utilService } from "../../../services/util-service.js";
-// import { eventApp } from '../../../main-services/eventapp-service.js';
-// // import noteTxt from './note-txt.cmp.js'
-
-// export default {
-//     props: ['isEdit'],
-//     template: `
-    
-//         <section v-if="isEdit" class="edit-note app-main">
-
-//         <button  @click="onEditExit">x</button>
-//             <form @submit.prevent="save">
-//             <input type="text" v-model="note.label" placeholder="Label" @input="onSetNoteLabel">
-//         <input v-if="note.type !== 'note-todos'" type="text" :placeholder="contentPlaceholder" v-model="noteContent" @input="onSetNoteContent">
-//         <ul class="note-edit-todos" v-if="note.type === 'note-todos'">
-//             <li class="note-edit-todo" v-for="todo in note.info.todos">
-//                <input type="text" @input="onSetNoteContent" v-model="todo.txt">
-//                <button class="delete-todo-btn" @click="onDeleteTodo(todo.id)">X</button> 
-//             </li>
-//             <button @click="onAddTodo">+</button>
-//         </ul>
-              
-//                     <!-- <component :is="note.type"  :info="note.info" @setVal="setAns($event ,note.id)"></component> -->
-                    
-
-
-//                     <button>Save</button>
-//             </form>
-//             <hr />
-           
-//             <pre>{{noteToEdit}}</pre>
-//         </section>
-//     `,
-//     data() {
-//         return {
-//             noteToEdit: noteService.getEmptyNote(),
-//             newEdit: [],
-//             note: null,
-//             // noteId: null
-//         };
-//     },
-//     created() {
-//         const id = this.$route.params;
-//         if (id) {
-//             noteService.get(id)
-//                 .then(note => this.noteToEdit = note);
-//         }
-//     },
-//     // mounted() {
-//     //     this.$refs.vendor.focus()
-//     // },
-//     methods: {
-//         save() {
-//             if (!this.noteToEdit.type.info) return;
-//             noteService.save(this.noteToEdit)
-//                 .then(note => {
-//                     eventApp.emit('show-msg', { txt: 'Saved succesfully', type: 'success' })
-//                     this.$router.push('./note')
-//                 });
-//         },
-//         // save() {
-//         //     console.log('Saving..');
-//         // },
-//         setAns(ans, idx) {
-//             console.log('Setting the answer: ', ans, 'idx:', idx);
-
-//             this.noteToEdit.splice(idx, 1, ans)
-
-//         },
-
-//     },
-//     computed: {
-//         formTitle() {
-//             const id = this.$route.params.noteId;
-//             console.log('id', id);
-//             return id ? 'Edit note' : 'Add note';
-
-//         },
-
-//         noteId() {
-//             return this.$route.params.noteId
-//         },
-//         fetchIdByNote(){
-
-//         }
-//     },
-//     watch: {
-//         noteToEdit: {
-//             handler() {
-//                 console.log('Edited note was changed');
-//             },
-//             deep: true
-//         }
-//     },
-//     components: {
-//         noteTxt,
-//     },
-// };
-
-// import { noteService } from '../services/note.service.js';
-// import { eventApp } from '../../../main-services/eventapp-service.js';
-// import noteTxt from './note-txt.cmp.js';
-// import noteTodos from './note-todos.cmp.js';
-// import noteVideo from './note-video.cmp.js';
-// import noteImg from './note-img.cmp.js';
-// // import notePreview from './note-preview.cmp.js'
-// export default {
-//     // props: ['note'],
-//     template: `
-    
-//         <section class="edit-note app-main">
-//         <h4>{{formTitle}}</h4>
-//         <form >
-//             <div v-if='noteToEdit' > 
-//             <!-- <note-preview :note='note' /> -->
-//             <component :is="noteToEdit.type" :info="noteToEdit.info" @setVal="updateNote"></component> 
-//              </div>
-//              <button class="add-btn" @click.prevent="addNote" title="Add Note">Add new Note</button>
-//              <button @click="save">Save</button>
-     
-     
-//           </form>
-        
-//         </section>
-//     `,
-//     data() {
-//         return {
-//             addNewNote:noteService.getEmptyNote(''),
-//             noteToEdit:null,
-
-//         };
-//     },
-
-   
-
-//     created() {
-      
-//         const id = this.$route.params.noteId; 
-//         if (id === this.$route.params.noteId) {
-//             noteService.get(id)
-//             .then(note => {
-//                 this.noteToEdit = note
-//                 console.log('created',this.noteToEdit );
-//             });
-//         }else{
-//              id = this.$route.params.noteId;
-//             noteService.get(id)
-//             .then(note => {
-//                 this.addNewNote = note
-//                 console.log('created',this.addNewNote );
-//         })
-//     }
-//     },
-    
-//     methods: {
-//         addNote() {
-//                 noteService.addNote(this.addNewNote)
-//                     .then((note) => this.$emit('addNotes', note));
-//             },
-
-//         save() {
-//             if (!this.noteToEdit.type) return;
-//             const id = this.$route.params.noteId; 
-//             if (id === this.$route.params.noteId){
-//                 console.log('id',id);
-//             noteService.put(this.noteToEdit)
-//             }else{
-//                 noteService.put(this.addNewNote)
-//             }
-//            },
-
-           
-        
-        
-//         updateNote(val){
-//         console.log('val',val);
-//             if (this.noteToEdit.type === 'note-txt') {
-//                 this.noteToEdit.info.txt = val;
-//             }
-//             if (this.noteToEdit.type === 'note-video') {
-//                 this.noteToEdit.info.videos = val;
-//             }
-//             if (this.noteToEdit.type === 'note-todos') {
-//                 this.noteToEdit.info.todos = val;
-//             }
-//             if (this.noteToEdit.type === 'note-img') {
-//                 this.noteToEdit.info.url = val;
-//             }
-//         },
-//     },
-//     computed: {
-//         formTitle() {
-//             const id = this.$route.params.noteId;
-//             return id ? 'Edit note' : 'Add note';
-//         },
-      
-        
-    
-//     },
- 
-//     components: {
-//         noteTxt,
-//         noteTodos,
-//         noteVideo,
-//         noteImg
-//     },
-// };
-
-
-
-
-// import { noteService } from '../services/note.service.js';
-// import { utilService } from '../../../main-services/util.services.js';
-
-// // import noteTxt from './note-txt.cmp.js';
-// // import noteTodos from './note-todos.cmp.js';
-// import noteVideo from './note-video.cmp.js';
-// // import noteImg from './note-img.cmp.js';
-// // import notePreview from './note-preview.cmp.js'
-// export default {
-//     props: ['note'],
-//     template: `
-    
-//         <section class="edit-note app-main">
-//         <h4>{{formTitle}}</h4>
-//         <form >
-//             <div v-if='noteToEdit' > 
-//             <button  @click="onEditExit">edit</button>
-//             <!-- <component :is="noteToEdit.type" :info="noteToEdit.info" @setVal="updateNote"></component>  -->
-//              </div>
-//              <!-- <button class="add-btn" @click.prevent="addNote" title="Add Note">Add new Note</button> -->
-//              <button @click="save">Save</button>
-     
-     
-//           </form>
-        
-//         </section>
-//     `,
-//     data() {
-//         return {
-//             // addNewNote:noteService.getEmptyNote(''),
-//             noteToEdit:null,
-
-//         };
-//     },
-
-   
-
-//     created() {
-      
-      
-//             const id = this.$route.params.noteId; 
-//             noteService.get(id)
-//             .then(note => {
-//                 this.noteToEdit = note
-//                 console.log('created',this.noteToEdit );
-//             });
-//         // }else{
-//         //      id = this.$route.params.noteId;
-//         //     noteService.get(id)
-//         //     .then(note => {
-//         //         this.addNewNote = note
-//         //         console.log('created',this.addNewNote );
-//         // })
-    
-//     },
-    
-//     methods: {
-//         // addNote() {
-//         //         noteService.addNote(this.addNewNote)
-//         //             .then((note) => this.$emit('addNotes', note));
-//         //     },
-
-//         save() {
-//             if (!this.noteToEdit.type) return;
-//             const id = this.$route.params.noteId; 
-//             if (id === this.$route.params.noteId){
-//                 console.log('id',id);
-//             noteService.put(this.noteToEdit)
-//             // }else{
-//             //     noteService.put(this.addNewNote)
-//             }
-//            },
-
-           
-        
-        
-//         updateNote(val){
-//         console.log('val',val);
-//             if (this.noteToEdit.type === 'note-txt') {
-//                 this.noteToEdit.info.txt = val;
-//             }
-//             if (this.noteToEdit.type === 'note-video') {
-//                 this.noteToEdit.info.videos = val;
-//             }
-//             if (this.noteToEdit.type === 'note-todos') {
-//                 this.noteToEdit.info.todos = val;
-//             }
-//             if (this.noteToEdit.type === 'note-img') {
-//                 this.noteToEdit.info.url = val;
-//             }
-//         },
-//     },
-//     computed: {
-//         formTitle() {
-//             const id = this.$route.params.noteId;
-//             return id ? 'Edit note' : 'Add note';
-//         },
-      
-//         watch: {
-//             carToEdit : {
-//                 handler() {
-//                     console.log('Edited Car was changed');
-//                 },
-//                 deep: true
-//             }
-//         }
-    
-//     },
- 
-//     components: {
-//         // noteTxt,
-//         // noteTodos,
-//         noteVideo,
-//         // noteImg
-//     },
-// };

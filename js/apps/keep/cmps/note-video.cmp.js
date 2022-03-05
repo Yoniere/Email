@@ -68,20 +68,3 @@ export default {
 
 
 
-// function onSearch() {
-//     var keyWord = document.querySelector('input').value
-//     getSongs(keyWord).then(songs => {
-//         renderSongs(songs)
-//         renderMainSong(songs)
-//     })
-
-
-
-/* <input  v-model="val"  @click="onPlay" type="text">
-<div class="card flex dark-bg" >
-      <div class="song img" ><img src="${song.snippet.thumbnails.default.url}"></div>
-      <div class="song title flex center">${song.snippet.title} </div>
-   </div>
-   <iframe width="420 " height="315 " src="https://www.youtube.com/embed/${songs[0].id.videoId}"> </iframe>
-   <iframe width="420 " height="315 " src="https://www.youtube.com/embed/${id}"> </iframe>
-</section> */

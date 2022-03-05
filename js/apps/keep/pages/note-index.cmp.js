@@ -12,7 +12,7 @@ export default {
             
                 <note-filter :notes='notes' @filtered="setFilter" v-if="!selectedNote"></note-filter>
                 <note-add  @note-add="addNote"/>
-                <note-color :note="note"  @update-note="updateNote"/>
+                <note-color :notes="notes"  @update-note="updateNote"/>
                 <note-list :notes="notes" @remove-note="removeNote"  @selected="selectNote" @note-edit="updateNote"></note-list>
           
               
