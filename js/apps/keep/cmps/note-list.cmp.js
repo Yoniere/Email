@@ -1,10 +1,7 @@
 import notePreview from './note-preview.cmp.js'
 import { noteService } from '../services/note.service.js'
 import noteEdit from './edit-note.cmp.js';
-// import noteImg from './note-img.cmp.js'
-// import noteTodos from './note-todos.cmp.js'
 import noteTxt from './note-txt.cmp.js'
-// import colorNote from './note-color.cmp.js';
 
 export default {
     props: ['notes'],
