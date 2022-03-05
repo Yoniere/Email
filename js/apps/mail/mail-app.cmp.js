@@ -83,8 +83,10 @@ export default {
         },
         emailsToShow() {
             if (!this.filterBy.text && this.filterBy.isRead === null && !this.filterBy.type) return this.emails;
-            // console.log(this.filterBy)
             const regex = new RegExp(this.filterBy.text, 'i');
+            if (this.filterBy.type === 'star') {
+                return this.emails.filter(email => (email.isStar === true))
+            }
             if (!this.filterBy.type) {
                 if (this.filterBy.isRead === null) {
                     return this.emails.filter(email => regex.test(email.body || email.subject))
@@ -110,10 +112,6 @@ export default {
                     return this.emails.filter(email => (email.isRead === this.filterBy.isRead) && (email.type === this.filterBy.type))
                 }
             }
-
-
-            // return this.emails.filter(email => regex.test(email.body || email.subject) && (email.isRead === this.filterBy.isRead) && (email.type === this.filterBy.type))
-
         },
         filterEmailsByType(type) {
             this.filterBy.type = type
@@ -138,13 +136,17 @@ export default {
             this.filterBy = filters;
             this.filterBy.type = '';
         },
-        getStarStatus(isStar) {
-            console.log(isStar)
-                // mailService.put(this.emails[idx])
-                // .then((email) =>
-                //     console.log(email)
+        getStarStatus(emailToStar) {
+            // console.log(email)
+            const idx = this.emails.findIndex(email =>
+                    email.id === emailToStar.id
+                )
+                // console.log(this.emails[idx].isStar);
+            mailService.put(this.emails[idx])
+                .then((email) =>
+                    console.log(email)
+                );
 
-            // );
         }
     },
     computed: {
