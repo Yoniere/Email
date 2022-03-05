@@ -9,3 +9,54 @@
     border-radius: 24px;
     font-size: .875rem;
 }
+
+.modal {
+    position: relative;
+    left: 306%;
+    bottom: -10%;
+    width: 25rem;
+    height: 22rem;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    /* border-radius: 0.8rem; */
+    border: 1px solid black;
+}
+
+.modal-header {
+    background-color: black;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    height: 1.5rem;
+    align-items: center;
+}
+
+.modal-exit-btn {
+    padding: 0px;
+    background-color: black;
+    border: 0px;
+    color: white;
+}
+
+.modal-header-txt {
+    background-color: black;
+    color: white;
+    font-size: 0.8rem;
+}
+
+.modal-receiver {
+    height: 1.5rem
+}
+
+.modal-subject {
+    height: 1.5rem
+}
+
+.modal-text-area {
+    height: 16rem;
+}
+
+.modal-send {
+    background-color: white;
+    color: white;
+}

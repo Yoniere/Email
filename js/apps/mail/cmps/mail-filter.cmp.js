@@ -5,6 +5,8 @@ export default {
             <input type="text" placeholder="search" @input="setFilterByName" v-model="filterBy.text">
             <button @click="setFilterByRead(true)"><img src="../../img/read.svg"></button>
             <button @click="setFilterByRead(false)"><img src="../../img/unread.svg"></button>
+            <button @click="clearFilters">Clear</button>
+
         </section>
     `,
     data() {
@@ -28,6 +30,14 @@ export default {
             this.filterBy.isRead = TrueOrFalse;
             console.log(this.filterBy.isRead)
             this.$emit('filtered', this.filterBy)
+        },
+
+        clearFilters() {
+            this.filterBy = {
+                text: '',
+                isRead: null,
+            }
+            this.$emit('clearAllFilters', this.filterBy)
         }
 
     },

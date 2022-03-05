@@ -9,12 +9,12 @@ export default {
         <section class="mail-app app-main-layout">
 
             <section class="filter-area flex">
-                <mail-filter class="filter-area-filters"  @filtered='setfilterBy'></mail-filter>
+                <mail-filter class="filter-area-filters" @clearAllFilters="setResetFilters" @filtered='setfilterBy'></mail-filter>
                 <div class="filter-area-sort flex">
-                <button @click="sortByTitle"> Sort By Subject</button>
-                <button @click="sortByDate" >Sort By Date</button>
+                <button @click="sortByTitle"><img src="../../img/sort-by-name.svg"></button>
+                <button @click="sortByDate"><img src="../../img/sort-by-date.svg"></button>
                 </div>
-                <div class="filter-area-unread bold">unread Emails: {{unreadEmailsCounter()}}</div>
+                <div class="filter-area-unread bold"><img src="../../img/unread.svg">{{unreadEmailsCounter()}}</div>
             </section>
             <section class="main-area flex">
                 <section class="side-area flex column">
@@ -129,10 +129,14 @@ export default {
         },
 
         sortByDate() {
-            this.emailForSort = this.emails.slice()
-            console.log(this.emailForSort)
-            this.emailForSort.sort((a, b) => (a.sentAt - b.sentAt))
-            this.emails = this.emailForSort;
+            // this.emailForSort = this.emails.slice()
+            // console.log(this.emailForSort)
+            return this.emails.sort((a, b) => (a.sentAt - b.sentAt))
+                // this.emails = this.emailForSort;
+        },
+        setResetFilters(filters) {
+            this.filterBy = filters;
+            this.filterBy.type = '';
         }
     },
     computed: {

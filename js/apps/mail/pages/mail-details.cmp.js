@@ -9,7 +9,10 @@ export default {
                    <h2 class="mail-details-sender">{{email.sender}}</h2> 
                    <h1 class="mail-details-subject">{{email.subject}}</h1> 
                    <p>{{email.body}}</p> 
+                   <div class="flex">
+                       <router-link to="/mail"><img src="../../img/back.svg"></router-link>
                    <div @click="onRemove(email.id)"><img src="../../img/trash.svg"></div> 
+                   </div>
         </section>
         <section v-else=''></section>
     `,
