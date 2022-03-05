@@ -1,0 +1,88 @@
+    @media (max-width:425px) {
+        .filter-area-filters button {
+            display: none;
+        }
+        .filter-area-sort {
+            display: none;
+        }
+        .filter-area-unread {
+            display: none;
+        }
+        .filter-types-area {
+            display: none;
+        }
+        .compose-new-mail {
+            content: url("/img/new-mobile.svg");
+            position: fixed;
+            bottom: 6%;
+            left: 11%;
+            background-color: rgba(242, 245, 245, 0.8);
+            border-radius: 0.5rem;
+            width: 2.2rem;
+            background-color: rgb(80, 146, 207);
+        }
+        .app-footer {
+            display: none;
+        }
+        .app-main-layout {
+            /* height: 90vh; */
+        }
+        .additonals-display {
+            display: flex;
+            flex-direction: column;
+            order: 1;
+        }
+        .text-display {
+            display: flex;
+            flex-direction: column;
+            order: 0;
+        }
+        .main-area {
+            flex-direction: column;
+            width: 5rem;
+        }
+        .mail-list li {
+            justify-content: start;
+        }
+        .mail-list li article {
+            justify-content: start;
+        }
+        .main-area {
+            flex-direction: column;
+            width: 0px;
+            height: 0px;
+        }
+        .side-area {
+            width: 0px;
+            height: 0px;
+            border: 0px;
+        }
+        .mail-list ul {
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+        }
+        .mail-list li {
+            height: 150px;
+        }
+        .email-sender {
+            width: 8rem;
+        }
+        .email-subject {
+            width: 8rem;
+        }
+        .mail-preview div {
+            margin-right: 5px;
+        }
+        .mail-area {
+            width: 20rem;
+        }
+        .email-body {
+            width: 12rem;
+        }
+        .app-header {
+            display: none;
+        }
+        .app-main-layout {
+            margin: 0px;
+        }
+    }
