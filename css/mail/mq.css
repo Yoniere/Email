@@ -32,20 +32,26 @@
             flex-direction: column;
             order: 1;
         }
+        .additonals-display div {
+            margin-bottom: 10px;
+        }
         .text-display {
             display: flex;
             flex-direction: column;
             order: 0;
+        }
+        .text-display div {
+            margin-bottom: 10px;
         }
         .main-area {
             flex-direction: column;
             width: 5rem;
         }
         .mail-list li {
-            justify-content: start;
+            /* justify-content: start; */
         }
         .mail-list li article {
-            justify-content: start;
+            /* justify-content: start; */
         }
         .main-area {
             flex-direction: column;
@@ -80,7 +86,7 @@
             width: 12rem;
         }
         .app-header {
-            display: none;
+            /* display: none; */
         }
         .app-main-layout {
             margin: 0px;
