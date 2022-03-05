@@ -1,8 +1,8 @@
 import { noteService } from '../services/note.service.js'
-import noteImg from './note-img.cmp.js'
-import noteTodos from './note-todos.cmp.js'
-import noteVideo from './note-video.cmp.js'
+// import noteImg from './note-img.cmp.js'
+// import noteTodos from './note-todos.cmp.js'
 import noteTxt from './note-txt.cmp.js'
+// import noteVideo from './note-video.cmp.js'
 // import noteFilter from './note-filter.cmp.js'
 
 export default {
@@ -16,7 +16,10 @@ export default {
         <p>note type: {{note.type}}</p>
         <p v-bind:id>note info: {{note.info.txt}}</p>
         <p v-bind:id>note video: {{videos}}</p>
-        <p v-bind:id>note todos: {{todo}}</p>
+        <!-- <component :is="note.type" :info="note.info"/> -->
+
+
+        <!-- <p v-bind:id>note todos: {{todo}}</p> -->
         <!-- <a v-bind:href="url"> ... </a> -->
         <!-- <span v-html="note.info"></span></p> -->
         <!-- <p>note type: {{note.info.txt}}</p> -->
@@ -70,9 +73,9 @@ export default {
     },
     components: {
         noteService,
-        noteImg,
-        noteTodos,
-        noteVideo,
+        // noteImg,
+        // noteTodos,
+        // noteVideo,
         noteTxt,
         // noteFilter
 

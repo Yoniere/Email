@@ -2,10 +2,31 @@
   display: flex;
 
   text-align: center;
+  max-width: 100%;
+  padding: 5px;
+  column-count: 4;
+  column-gap: 10px;
+  row-gap: 10px;
+  margin: 0 5px 5px 5px;
+  page-break-inside: avoid;
+  break-inside: auto;
+}
+
+.note-list > * {
+  min-width: 190px;
+  margin-bottom: 10px;
+  break-inside: avoid;
+  transform: translateZ(0);
+}
+
+/* .note-list {
+  display: flex;
+
+  text-align: center;
   background-color: aqua;
 }
 
-.note-preview-container {
+.curr-note-list {
   display: flex;
   background-color: rgb(238, 226, 58);
   flex-basis: 20%;
@@ -19,3 +40,6 @@
   align-items: baseline;
   flex-direction: row;
 }
+
+.curr-note-list {
+} */

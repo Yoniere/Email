@@ -2,13 +2,10 @@
 export default {
     template: `
           <section >
+              <input v-model='search' @change='searchSong' type="text">
           <video width="320" height="240" ref="videoPlayer" @change="reportVal">
-    <source
-      src="https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4"
-      type="video/mp4"
-    />
-    Your browser does not support the video tag.
-  </video>
+
+          <iframe width="420 " height="315 " :src="searchSong"> </iframe>
   <div>
     <button @click="play">play</button>
     <button @click="pause">pause</button>
@@ -25,7 +22,8 @@ export default {
     props: ["info"],
     data() {
         return {
-
+            search: null,
+            val: ''
         };
     },
 
@@ -53,8 +51,37 @@ export default {
 
         reportVal() {
             this.$emit("setVal", this.val);
-        }
+        },
 
+        searchSong() {
+            console.log('this.search', this.search);
+            getSongs(this.search).then(song => {
+                console.log('song', song);
+                // return `https://www.youtube.com/embed/${song}`
+
+            })
+
+
+        }
     },
 };
 
+
+
+// function onSearch() {
+//     var keyWord = document.querySelector('input').value
+//     getSongs(keyWord).then(songs => {
+//         renderSongs(songs)
+//         renderMainSong(songs)
+//     })
+
+
+
+/* <input  v-model="val"  @click="onPlay" type="text">
+<div class="card flex dark-bg" >
+      <div class="song img" ><img src="${song.snippet.thumbnails.default.url}"></div>
+      <div class="song title flex center">${song.snippet.title} </div>
+   </div>
+   <iframe width="420 " height="315 " src="https://www.youtube.com/embed/${songs[0].id.videoId}"> </iframe>
+   <iframe width="420 " height="315 " src="https://www.youtube.com/embed/${id}"> </iframe>
+</section> */

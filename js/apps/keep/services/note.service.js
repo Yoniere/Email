@@ -2,6 +2,14 @@ import { storageService } from '../../../main-services/async-storage.services.js
 import { utilService } from '../../../main-services/util.services.js';
 
 const NOTES_KEY = 'notesDB';
+const STORAGE_KEY = 'userCache'
+
+var gNotes;
+// var gUserCache = utilService.loadFromStorage(STORAGE_KEY) || {}
+
+
+
+
 _createNotes()
 
 export const noteService = {
@@ -11,26 +19,71 @@ export const noteService = {
     remove,
     save,
     removeNote,
-    getEmptyNote,
+    getNoteById,
+    updateNote,
     put,
     addNote,
-    post
+    post,
+    getSongs,
+    getNotes,
+    initNotes
 }
 
-function getEmptyNote(noteType) {
-    const emptyNote = {
-        isPinned: false,
-        info: {},
-        style: {
-            backgroundColor: null
-        }
+// function getEmptyNote(noteType) {
+//     const emptyNote = {
+//         isPinned: false,
+//         info: {},
+//         style: {
+//             backgroundColor: null
+//         }
+//     }
+// }
+
+function initNotes() {
+    const loaded = utilService.loadFromStorage(NOTES_KEY);
+    if (!loaded || !loaded.length) {
+        gNotes = notes;
+        utilService.saveToStorage(NOTES_KEY, gNotes);
+    } else gNotes = loaded;
+}
+
+
+function getSongs(val) {
+    gUserSearch.push(val)
+    saveToStorage(STORAGE_KEY, gUserSearch)
+
+    if (gUserCache.length) {
+        return Promise.resolve(gUserCache);
     }
+    return axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&videoEmbeddable=true&type=video&key=AIzaSyB3dFH937QIEFt5dqdjbcfBPzTAc2D0jaY=${val}`)
+        .then(res => {
+            gUserCache = res.data.items
+            saveToStorage(STORAGE_KEY, res.data.items)
+            return res.data.items
 
+        })
 }
+
+
+function getNoteById(id) {
+    return storageService.get(NOTES_KEY, id);
+}
+
+
+function updateNote(note) {
+    return storageService.put(NOTES_KEY, note)
+}
+
 
 function addNote(note) {
-    return storageService.post(NOTES_KEY, note)
 
+    gNotes.unshift(note);
+    utilService.saveToStorage(NOTES_KEY, gNotes);
+    return Promise.resolve(gNotes);
+
+}
+function getNotes() {
+    return JSON.parse(JSON.stringify(gNotes));
 }
 
 function query() {
@@ -83,8 +136,12 @@ function _createNotes() {
                 type: "note-txt",
                 isPinned: false,
                 info: {
+                    title: 'Note Title:',
                     txt: "Fullstack Me Baby!"
-                }
+                },
+                style: {
+                    backgroundColor: '#ffffff',
+                },
             },
             {
                 id: "n102",
@@ -94,6 +151,7 @@ function _createNotes() {
                     title: "Bobi and Me"
                 },
                 style: {
+                    title: 'your image',
                     backgroundColor: "#00d"
                 }
             },
@@ -103,13 +161,14 @@ function _createNotes() {
                 info: {
                     label: "Get my stuff together",
                     todo: [
-                        { txt: "Driving liscence", doneAt: null },
-                        { txt: "Coding power", doneAt: 187111111 },
-                        { txt: "", doneAt: null },
-                        { txt: "", doneAt: 187111111 },
-                        { txt: "", doneAt: null },
-                        { txt: "", doneAt: 187111111 },
-                    ]
+                        { id: 'ld3F67', txt: "Driving liscence", doneAt: null },
+                        { id: 's6EE4g', txt: "Coding power", doneAt: 187111111 },
+
+                    ],
+                },
+                style: {
+                    title: 'todo list:',
+                    backgroundColor: "#00d"
                 }
             },
             {
@@ -121,32 +180,14 @@ function _createNotes() {
                         { url: "https://www.youtube.com/watch?v=s4ObxcdXoFE", },
                         { url: "https://dai.ly/x7n7y06", }
                     ]
+                },
+                style: {
+                    title: 'your video:',
+                    backgroundColor: "#ffffff"
                 }
             },
-            {
-                id: "n105",
-                type: "note-txt",
-                isPinned: false,
-                info: {
-                    txt: "txt1!"
-                }
-            },
-            {
-                id: "n106",
-                type: "note-txt",
-                isPinned: false,
-                info: {
-                    txt: "txt2!"
-                }
-            },
-            {
-                id: "n107",
-                type: "note-txt",
-                isPinned: false,
-                info: {
-                    txt: "txt3!"
-                }
-            },
+
+
         ];
         utilService.saveToStorage(NOTES_KEY, notes)
     }
