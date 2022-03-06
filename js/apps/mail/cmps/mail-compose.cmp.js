@@ -3,7 +3,7 @@ export default {
 
     template: `
         <section>
-            <button class="new-email flex" @click="newEmailModal"><img src="../../img/new.svg">New Email</button> 
+            <button class="new-email flex" @click="newEmailModal"><img src="./img/new.svg">New Email</button> 
             <form class="modal" v-if="this.isclicked" action="">
                 
                 <div class="modal-header flex justify-content">
@@ -13,7 +13,7 @@ export default {
                 <input class="modal-receiver" v-model="newMail.receiver" type="text" placeholder="To">
                 <input class="modal-subject" v-model="newMail.subject" type="text" placeholder="Subject">
                 <textarea class="modal-text-area" v-model="newMail.body" rows="4" cols="30"></textarea>
-                <button class="modal-send" @click="sendEmail(this.newMail)"><img src="../../img/sent.svg"></button>
+                <button class="modal-send" @click="sendEmail(this.newMail)"><img src="./img/sent.svg"></button>
             </form>   
         </section>
     `,

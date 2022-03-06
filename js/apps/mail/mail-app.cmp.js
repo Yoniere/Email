@@ -11,10 +11,10 @@ export default {
             <section class="filter-area flex">
                 <mail-filter class="filter-area-filters" @clearAllFilters="setResetFilters" @filtered='setfilterBy'></mail-filter>
                 <div class="filter-area-sort flex">
-                <button @click="sortByTitle"><img src="../../img/sort-by-name.svg"></button>
-                <button @click="sortByDate"><img src="../../img/sort-by-date.svg"></button>
+                <button @click="sortByTitle"><img src="./img/sort-by-name.svg"></button>
+                <button @click="sortByDate"><img src="./img/sort-by-date.svg"></button>
                 </div>
-                <div class="filter-area-unread bold"><img src="../../img/unread.svg">{{unreadEmailsCounter()}}</div>
+                <div class="filter-area-unread bold"><img src="./img/unread.svg">{{unreadEmailsCounter()}}</div>
             </section>
             <section class="main-area flex">
                 <section class="side-area flex column">

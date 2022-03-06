@@ -3,8 +3,8 @@ export default {
     template: `
         <section>
             <input type="text" placeholder="search" @input="setFilterByName" v-model="filterBy.text">
-            <button @click="setFilterByRead(true)"><img src="../../img/read.svg"></button>
-            <button @click="setFilterByRead(false)"><img src="../../img/unread.svg"></button>
+            <button @click="setFilterByRead(true)"><img src="./img/read.svg"></button>
+            <button @click="setFilterByRead(false)"><img src="./img/unread.svg"></button>
             <button @click="clearFilters">Clear</button>
 
         </section>

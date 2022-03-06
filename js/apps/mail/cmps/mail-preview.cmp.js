@@ -43,11 +43,11 @@ export default {
             return this.email.body.slice(0, 50);
         },
         isEmailReadToDisplay() {
-            return (this.email.isRead) ? '../../img/read.svg' : '../../img/unread.svg';
+            return (this.email.isRead) ? './img/read.svg' : './img/unread.svg';
         },
 
         isEmailStarToDisplay() {
-            return (this.email.isStar) ? '../../img/full-star.svg' : '../../img/empty-star.svg';
+            return (this.email.isStar) ? './img/full-star.svg' : './img/empty-star.svg';
         },
 
 
