@@ -14,13 +14,6 @@
 @import "cmps/main-footer.css";
 @import "cmps/home-page.css";
 
-/* cmps KEEPS */
-
-@import "./keeps/main-app-note.css";
-@import "./keeps/note-list.css";
-@import "./keeps/color-list.css";
-@import "./keeps/edit.css";
-
 /* cmps MAIL  */
 
 @import "./mail/mail-app.css";

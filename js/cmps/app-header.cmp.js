@@ -7,7 +7,6 @@ export default {
                 <nav class="nav-bar-header flex hamburger">
                 <router-link to="/">Home</router-link> 
                 <!-- <router-link to="/about">About</router-link>| -->
-                <router-link to="/note-index">MissKeep</router-link> 
                 <router-link to="/mail">MisterEmail</router-link>
             </nav>
                
